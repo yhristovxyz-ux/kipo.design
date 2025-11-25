@@ -1,14 +1,23 @@
+/**
+ * @fileoverview Button component wrapper with CMS editing support
+ * @module components/atoms/Button
+ * 
+ * Wraps the design system Button with CMS editing functionality.
+ * Uses the new Momentic.ai-inspired design system.
+ */
+
 import React from 'react';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { Button as DSButton } from '@/design-system';
+import { cn } from '@/design-system/utils/cn';
 import { useCMS } from '../../contexts/CMSContext';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'link';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   href?: string;
   onClick?: (e: React.MouseEvent) => void;
-  icon?: LucideIcon;
+  icon?: React.ComponentType<{ className?: string }>;
   iconPosition?: 'left' | 'right';
   className?: string;
   editableId?: string;
@@ -21,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'md',
   href,
   onClick,
-  icon: Icon,
+  icon,
   iconPosition = 'right',
   className = '',
   editableId,
@@ -29,60 +38,64 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const { isEditMode, selectedElement, setSelectedElement } = useCMS();
   
-  const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-200 rounded-full';
-  
-  const variantClasses = {
-    primary: 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl',
-    secondary: 'bg-white text-gray-900 hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-200',
-    outline: 'border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white'
-  };
-  
-  const sizeClasses = {
-    sm: 'px-4 py-2 text-sm gap-2',
-    md: 'px-6 py-3 text-base gap-2',
-    lg: 'px-8 py-4 text-lg gap-2'
-  };
-
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
-  
   const isSelected = isEditMode && selectedElement === editableId;
   const editClasses = isEditMode ? 'relative hover:ring-2 hover:ring-blue-400' : '';
   const selectedClasses = isSelected ? 'ring-2 ring-blue-500' : '';
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (isEditMode && editableId) {
       e.preventDefault();
       setSelectedElement(editableId);
     } else if (onClick) {
-      onClick(e);
+      onClick(e as any);
     }
   };
 
-  const content = (
-    <>
-      {Icon && iconPosition === 'left' && <Icon className="w-5 h-5" />}
-      <span>{children}</span>
-      {Icon && iconPosition === 'right' && <Icon className="w-5 h-5" />}
-      {isEditMode && editableId && (
-        <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-          <span className="text-white text-xs">✎</span>
-        </div>
-      )}
-    </>
-  );
-
+  // If href is provided and not in edit mode, render as link
   if (href && !isEditMode) {
     return (
-      <a href={href} className={`${classes} ${editClasses} ${selectedClasses}`} onClick={handleClick}>
-        {content}
+      <a 
+        href={href} 
+        className={cn(
+          'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg',
+          variant === 'primary' && 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-lg hover:shadow-glow',
+          variant === 'secondary' && 'border-2 border-gray-700 text-gray-100 hover:bg-gray-800 hover:border-gray-600 bg-transparent',
+          variant === 'ghost' && 'text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent',
+          size === 'sm' && 'h-9 px-3 text-sm rounded-lg gap-1.5',
+          size === 'md' && 'h-11 px-5 text-base rounded-xl gap-2',
+          size === 'lg' && 'h-13 px-7 text-lg rounded-xl gap-2',
+          size === 'xl' && 'h-16 px-10 text-xl rounded-2xl gap-3',
+          editClasses,
+          selectedClasses,
+          className
+        )}
+      >
+        {icon && iconPosition === 'left' && React.createElement(icon, { className: 'w-5 h-5' })}
+        <span>{children}</span>
+        {icon && iconPosition === 'right' && React.createElement(icon, { className: 'w-5 h-5' })}
       </a>
     );
   }
 
   return (
-    <button className={`${classes} ${editClasses} ${selectedClasses}`} onClick={handleClick}>
-      {content}
-    </button>
+    <div className="relative inline-block">
+      <DSButton
+        variant={variant}
+        size={size}
+        icon={icon}
+        iconPosition={iconPosition}
+        onClick={handleClick}
+        className={cn(editClasses, selectedClasses, className)}
+      >
+        {children}
+      </DSButton>
+      
+      {isEditMode && editableId && (
+        <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+          <span className="text-white text-xs">✎</span>
+        </div>
+      )}
+    </div>
   );
 };
 
