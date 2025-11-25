@@ -114,20 +114,6 @@
     text-wrap: balance;
   }
 }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-primary);
-  background-color: var(--color-neutral-50);
-  color: var(--color-neutral-800);
-  line-height: 1.6;
-}
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
