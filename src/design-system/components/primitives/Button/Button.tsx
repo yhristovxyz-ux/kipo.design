@@ -25,35 +25,32 @@ import { cn } from '@/design-system/utils/cn';
 
 /**
  * Button variant styles using CVA
- * Inspired by Momentic.ai design system
+ * Brutalist design system - geometric, bold, no shadows
  */
 const buttonVariants = cva(
-  // Base styles - applied to all buttons
-  'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-bg disabled:pointer-events-none disabled:opacity-50',
+  // Base styles - brutalist aesthetic
+  'inline-flex items-center justify-center font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-2 rounded-brutalist',
   {
     variants: {
       variant: {
-        // Primary - Blue gradient (Momentic.ai CTA style)
-        primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 shadow-lg hover:shadow-glow',
+        // Primary - Blue fill
+        primary: 'bg-primary text-white border-primary hover:bg-primary-hover hover:border-primary-hover',
         
-        // Secondary - Outlined
-        secondary: 'border-2 border-gray-700 text-gray-100 hover:bg-gray-800 hover:border-gray-600 bg-transparent',
+        // Secondary - Outlined black
+        secondary: 'border-zinc-900 text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white',
         
-        // Ghost - Transparent
-        ghost: 'text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent',
+        // Ghost - No border
+        ghost: 'border-transparent text-zinc-900 hover:bg-zinc-100',
         
-        // Danger - Red
-        danger: 'bg-error text-white hover:bg-error-dark active:bg-red-800 shadow-lg',
-        
-        // Link - Text only
-        link: 'text-primary-500 hover:text-primary-400 underline-offset-4 hover:underline bg-transparent',
+        // Outline - Zinc border
+        outline: 'border-zinc-300 text-zinc-900 bg-white hover:border-zinc-900',
       },
       
       size: {
-        sm: 'h-9 px-3 text-sm rounded-lg gap-1.5',
-        md: 'h-11 px-5 text-base rounded-xl gap-2',
-        lg: 'h-13 px-7 text-lg rounded-xl gap-2',
-        xl: 'h-16 px-10 text-xl rounded-2xl gap-3',
+        sm: 'h-9 px-4 text-sm gap-2',
+        md: 'h-11 px-6 text-base gap-2',
+        lg: 'h-13 px-8 text-lg gap-3',
+        xl: 'h-16 px-10 text-xl gap-3',
       },
       
       fullWidth: {

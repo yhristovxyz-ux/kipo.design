@@ -1,8 +1,8 @@
 /**
- * @fileoverview Header component with Momentic.ai-inspired design
+ * @fileoverview Header component with brutalist design
  * @module components/Header
  * 
- * Navigation header with glassmorphism effect and dark theme.
+ * Geometric navigation header with strict alignment and bold typography.
  */
 
 import React, { useState, useEffect } from 'react';
@@ -36,27 +36,27 @@ const Header: React.FC = () => {
   const topOffset = isEditMode ? 'top-[60px]' : 'top-0';
 
   return (
-    <header className={`fixed ${topOffset} left-0 right-0 z-40 transition-all duration-300 ${
+    <header className={`fixed ${topOffset} left-0 right-0 z-40 transition-colors duration-150 ${
       isScrolled 
-        ? 'glass border-b border-dark-border' 
-        : 'bg-dark-bg/80 backdrop-blur-lg border-b border-dark-border'
+        ? 'bg-white border-b-2 border-zinc-900' 
+        : 'bg-white border-b-2 border-zinc-200'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="brutalist-container">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-mono font-semibold text-white">
+            <h1 className="text-xl font-mono font-bold text-zinc-900 uppercase tracking-tight">
               kipo.design
             </h1>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                className="text-sm font-semibold text-zinc-900 hover:text-primary transition-colors duration-150 uppercase tracking-wide"
               >
                 {item.name}
               </a>
@@ -78,24 +78,24 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+            className="md:hidden p-2 text-zinc-900 hover:text-primary transition-colors border-2 border-zinc-900 rounded-brutalist"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-dark-surface border-t border-dark-border shadow-2xl">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="md:hidden bg-white border-t-2 border-zinc-900">
+          <div className="brutalist-container py-4 space-y-2">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 font-medium"
+                className="block px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors duration-150 uppercase tracking-wide border-2 border-zinc-200 rounded-brutalist"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
