@@ -4,7 +4,7 @@
 
 ### Three Main Branches
 ```
-master (production) ← staging (beta) ← dev (development)
+main (production) ← staging (beta) ← dev (development)
                                           ↑
                                     dev-yourname (your work)
 ```
@@ -459,7 +459,7 @@ git ci -m "message"
 - [ ] README is updated
 - [ ] `.env.example` is updated
 
-### Before merge to master:
+### Before merge to main:
 - [ ] Client approval
 - [ ] Tested on staging
 - [ ] Production database backup (if applicable)
