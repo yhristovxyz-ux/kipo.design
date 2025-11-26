@@ -6,7 +6,7 @@ Every project uses **Trunk-based development** with three main branches:
 
 - **`dev`** - always the most current development branch
 - **`staging`** - branch for completed features being tested
-- **`master`** - production branch, this code is on the live site
+- **`main`** - production branch, this code is on the live site
 
 ⚠️ **IMPORTANT:** Never create other names for these three branches!
 
@@ -16,7 +16,7 @@ Every project uses **Trunk-based development** with three main branches:
 
 ### 1. Creating a Personal Branch
 
-Always work in your own branch, never directly in `dev`, `staging`, or `master`.
+Always work in your own branch, never directly in `dev`, `staging`, or `main`.
 
 ```bash
 # Make sure you're in the dev branch
@@ -165,12 +165,12 @@ git push
 
 ⚠️ **Staging is the beta version** - test here before production.
 
-### 3. Merge to master (production)
+### 3. Merge to main (production)
 
 **ONLY after client approval:**
 
 ```bash
-git checkout master
+git checkout main
 git pull
 git merge staging
 git push
@@ -223,7 +223,7 @@ git push
 - Resolve conflicts carefully
 
 ### ❌ DON'T:
-- Never work directly in `dev`, `staging`, or `master`
+- Never work directly in `dev`, `staging`, or `main`
 - Don't commit `.env` files or sensitive data
 - Don't force push without urgent need
 - Don't merge without testing
@@ -284,7 +284,7 @@ git push origin --delete branch-name
 
 ---
 
-## Checklist Before Merging to staging/master
+## Checklist Before Merging to staging/main
 
 - [ ] Code is tested locally
 - [ ] All tests pass
