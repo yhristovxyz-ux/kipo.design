@@ -47,13 +47,14 @@ const Approach: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="approach">
-    <section className="brutalist-section bg-zinc-50 border-t-2 border-zinc-900">
+    <section className="brutalist-section bg-bg-secondary border-t-2 border-border-primary">
       <div className="brutalist-container">
         <div className="text-center mb-16">
+          <div className="util-label mb-4">005-APPROACH</div>
           <EditableText
             elementId="approach-headline"
             onUpdate={(value) => updateContent('headline', value)}
-            className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6"
+            className="text-3xl md:text-5xl font-bold text-text-primary mb-6"
             as="h2"
           >
             Design That Works Because It's
@@ -64,7 +65,7 @@ const Approach: React.FC = () => {
           <EditableText
             elementId="approach-description"
             onUpdate={(value) => updateContent('description', value)}
-            className="text-xl text-zinc-600 max-w-3xl mx-auto"
+            className="text-xl text-text-secondary max-w-3xl mx-auto"
             as="p"
             multiline
           >
@@ -79,11 +80,11 @@ const Approach: React.FC = () => {
               className="group relative overflow-hidden border-0 rounded-none"
             >
               <CardContent className="p-8">
-                <div className="w-12 h-12 bg-white border-2 border-zinc-900 rounded-brutalist flex items-center justify-center mb-6 group-hover:bg-primary group-hover:border-primary transition-colors">
+                <div className="w-12 h-12 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center mb-6 group-hover:bg-primary group-hover:border-primary transition-colors">
                   <Icon
                     name={principle.icon.name || 'Users'}
                     size={24}
-                    className="text-zinc-900 group-hover:text-white transition-colors"
+                    className="text-text-primary group-hover:text-white transition-colors"
                     editableId={`approach-icon-${index}`}
                   />
                 </div>
@@ -95,7 +96,7 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], title: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-xl font-bold text-zinc-900 mb-4"
+                  className="text-xl font-bold text-text-primary mb-4"
                   as="h3"
                 >
                   {principle.title}
@@ -108,7 +109,7 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], description: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-zinc-600 mb-6 leading-relaxed"
+                  className="text-text-secondary mb-6 leading-relaxed"
                   as="p"
                   multiline
                 >
@@ -122,7 +123,7 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], stat: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-sm font-bold text-zinc-900 bg-zinc-100 px-4 py-2 rounded-brutalist inline-block border-2 border-zinc-900 uppercase tracking-wide"
+                  className="text-sm font-bold text-text-primary bg-bg-secondary px-4 py-2 rounded-brutalist inline-block border border-border-primary uppercase tracking-wide"
                   as="div"
                 >
                   {principle.stat}

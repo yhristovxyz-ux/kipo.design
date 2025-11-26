@@ -40,14 +40,14 @@ const Header: React.FC = () => {
   return (
     <header className={`fixed ${topOffset} left-0 right-0 z-40 transition-colors duration-150 ${
       isScrolled 
-        ? 'bg-white border-b-2 border-zinc-900' 
-        : 'bg-white border-b-2 border-zinc-200'
+        ? 'bg-bg-primary border-b-2 border-border-primary' 
+        : 'bg-bg-primary border-b-2 border-border-secondary'
     }`}>
       <div className="brutalist-container">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-mono font-bold text-zinc-900 uppercase tracking-tight">
+            <h1 className="text-xl font-mono font-bold text-text-primary uppercase tracking-tight">
               kipo.design
             </h1>
           </div>
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-sm font-semibold text-zinc-900 hover:text-primary transition-colors duration-150 uppercase tracking-wide"
+                  className="text-sm font-semibold text-text-primary hover:text-primary transition-colors duration-150 uppercase tracking-wide"
                 >
                   {item.name}
                 </Link>
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-sm font-semibold text-zinc-900 hover:text-primary transition-colors duration-150 uppercase tracking-wide"
+                  className="text-sm font-semibold text-text-primary hover:text-primary transition-colors duration-150 uppercase tracking-wide"
                 >
                   {item.name}
                 </a>
@@ -90,7 +90,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-zinc-900 hover:text-primary transition-colors border-2 border-zinc-900 rounded-brutalist"
+            className="md:hidden p-2 text-text-primary hover:text-primary transition-colors border border-border-primary rounded-brutalist"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -101,14 +101,14 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t-2 border-zinc-900">
+        <div className="md:hidden bg-bg-primary border-t-2 border-border-primary">
           <div className="brutalist-container py-4 space-y-2">
             {navItems.map((item) => (
               item.isRoute ? (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="block px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors duration-150 uppercase tracking-wide border-2 border-zinc-200 rounded-brutalist"
+                  className="block px-4 py-3 text-sm font-semibold text-text-primary hover:bg-bg-hover transition-colors duration-150 uppercase tracking-wide border border-border-secondary rounded-brutalist"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -117,7 +117,7 @@ const Header: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block px-4 py-3 text-sm font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors duration-150 uppercase tracking-wide border-2 border-zinc-200 rounded-brutalist"
+                  className="block px-4 py-3 text-sm font-semibold text-text-primary hover:bg-bg-hover transition-colors duration-150 uppercase tracking-wide border border-border-secondary rounded-brutalist"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

@@ -43,13 +43,13 @@ const Contact: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="contact">
-      <section id="contact" className="brutalist-section bg-white border-t-2 border-zinc-900">
+      <section id="contact" className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
         <div className="brutalist-container">
           <div className="mb-16">
             <EditableText
               elementId="contact-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-text-primary mb-6"
               as="h2"
             >
               Ready to Start Your Project?
@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
             <EditableText
               elementId="contact-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-zinc-600 max-w-2xl"
+              className="text-lg text-text-secondary max-w-2xl"
               as="p"
               multiline
             >
@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
                   <EditableText
                     elementId="contact-form-title"
                     onUpdate={(value) => updateContent('formTitle', value)}
-                    className="text-2xl font-bold text-zinc-900 mb-6"
+                    className="text-2xl font-bold text-text-primary mb-6"
                     as="h3"
                   >
                     Tell us about your project
@@ -83,7 +83,7 @@ const Contact: React.FC = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">
+                        <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
                           Name *
                         </label>
                         <Input
@@ -97,7 +97,7 @@ const Contact: React.FC = () => {
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">
+                        <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
                           Email *
                         </label>
                         <Input
@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">
+                        <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
                           Company
                         </label>
                         <Input
@@ -126,14 +126,14 @@ const Contact: React.FC = () => {
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">
+                        <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
                           Budget Range
                         </label>
                         <select
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-zinc-900 rounded-brutalist focus:border-primary focus:outline-none transition-colors bg-white text-zinc-900 font-medium"
+                          className="w-full px-4 py-3 border border-border-primary rounded-brutalist focus:border-primary focus:outline-none transition-colors bg-bg-primary text-text-primary font-medium"
                         >
                           <option value="">Select budget range</option>
                           <option value="5k-10k">$5,000 - $10,000</option>
@@ -145,7 +145,7 @@ const Contact: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">
+                      <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
                         Project Details *
                       </label>
                       <textarea
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-3 border-2 border-zinc-900 rounded-brutalist focus:border-primary focus:outline-none transition-colors resize-none bg-white text-zinc-900"
+                        className="w-full px-4 py-3 border border-border-primary rounded-brutalist focus:border-primary focus:outline-none transition-colors resize-none bg-bg-primary text-text-primary"
                         placeholder="Tell us about your project, goals, and timeline..."
                       />
                     </div>
@@ -180,7 +180,7 @@ const Contact: React.FC = () => {
                   <EditableText
                     elementId="contact-info-title"
                     onUpdate={(value) => updateContent('infoTitle', value)}
-                    className="text-xl font-bold text-zinc-900 mb-6"
+                    className="text-xl font-bold text-text-primary mb-6"
                     as="h3"
                   >
                     Get in Touch
@@ -189,15 +189,15 @@ const Contact: React.FC = () => {
                   <div className="space-y-4">
                     {contactInfo.map((info, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <div className="w-8 h-8 border-2 border-zinc-900 rounded-brutalist flex items-center justify-center flex-shrink-0 mt-1">
-                          <info.icon className="w-4 h-4 text-zinc-900" />
+                        <div className="w-8 h-8 border border-border-primary rounded-brutalist flex items-center justify-center flex-shrink-0 mt-1">
+                          <info.icon className="w-4 h-4 text-text-primary" />
                         </div>
                         <div>
-                          <div className="text-xs text-zinc-500 mb-1 font-mono uppercase font-bold">{info.label}</div>
+                          <div className="text-xs text-text-tertiary mb-1 font-mono uppercase font-bold">{info.label}</div>
                           <EditableText
                             elementId={`contact-info-${index}`}
                             onUpdate={(value) => updateContent(`contactInfo${index}`, value)}
-                            className="text-sm text-zinc-900"
+                            className="text-sm text-text-primary"
                             as="div"
                           >
                             {info.value}
@@ -209,7 +209,7 @@ const Contact: React.FC = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-900">
+              <Card className="bg-bg-tertiary border-border-primary">
                 <CardContent className="p-8">
                   <EditableText
                     elementId="contact-cta-title"
@@ -222,7 +222,7 @@ const Contact: React.FC = () => {
                   <EditableText
                     elementId="contact-cta-description"
                     onUpdate={(value) => updateContent('ctaDescription', value)}
-                    className="text-zinc-300 mb-6 text-sm"
+                    className="text-text-secondary mb-6 text-sm"
                     as="p"
                     multiline
                   >
@@ -231,7 +231,7 @@ const Contact: React.FC = () => {
                   <Button 
                     variant="secondary" 
                     size="lg"
-                    className="w-full bg-white text-zinc-900 hover:bg-zinc-100 border-white"
+                    className="w-full bg-bg-primary text-text-primary hover:bg-bg-secondary border-white"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
                     Book a Call

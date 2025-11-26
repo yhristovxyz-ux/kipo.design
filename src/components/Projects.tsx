@@ -74,13 +74,14 @@ const Projects: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="projects">
-      <section id="work" className="brutalist-section bg-white border-t-2 border-zinc-900">
+      <section id="work" className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
         <div className="brutalist-container">
           <div className="mb-16">
+          <div className="util-label mb-4">006-PROJECTS</div>
             <EditableText
               elementId="projects-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-text-primary mb-6"
               as="h2"
             >
               Featured Projects
@@ -88,7 +89,7 @@ const Projects: React.FC = () => {
             <EditableText
               elementId="projects-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-zinc-600 max-w-2xl"
+              className="text-lg text-text-secondary max-w-2xl"
               as="p"
               multiline
             >
@@ -116,11 +117,11 @@ const Projects: React.FC = () => {
                 </div>
 
                 <CardContent className="p-6">
-                  <div className="flex items-center gap-2 mb-4 font-mono text-xs text-zinc-500">
+                  <div className="flex items-center gap-2 mb-4 font-mono text-xs text-text-tertiary">
                     <EditableText
                       elementId={`project-year-${project.id}`}
                       onUpdate={(value) => console.log('Update year:', value)}
-                      className="font-mono text-xs text-zinc-500"
+                      className="font-mono text-xs text-text-tertiary"
                       as="span"
                     >
                       {project.year}
@@ -129,7 +130,7 @@ const Projects: React.FC = () => {
                     <EditableText
                       elementId={`project-client-${project.id}`}
                       onUpdate={(value) => console.log('Update client:', value)}
-                      className="font-mono text-xs text-zinc-500"
+                      className="font-mono text-xs text-text-tertiary"
                       as="span"
                     >
                       {project.client}
@@ -139,7 +140,7 @@ const Projects: React.FC = () => {
                   <EditableText
                     elementId={`project-title-${project.id}`}
                     onUpdate={(value) => console.log('Update title:', value)}
-                    className="text-xl font-bold text-zinc-900 mb-3"
+                    className="text-xl font-bold text-text-primary mb-3"
                     as="h3"
                   >
                     {project.title}
@@ -148,7 +149,7 @@ const Projects: React.FC = () => {
                   <EditableText
                     elementId={`project-description-${project.id}`}
                     onUpdate={(value) => console.log('Update description:', value)}
-                    className="text-zinc-600 mb-4 leading-relaxed text-sm"
+                    className="text-text-secondary mb-4 leading-relaxed text-sm"
                     as="p"
                     multiline
                   >
@@ -173,7 +174,7 @@ const Projects: React.FC = () => {
           <div className="mt-12">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 border-2 border-zinc-900 text-zinc-900 px-6 py-3 font-bold hover:bg-zinc-900 hover:text-white transition-all duration-200 rounded-brutalist uppercase tracking-wide text-sm"
+              className="inline-flex items-center gap-2 border border-border-primary text-text-primary px-6 py-3 font-bold hover:bg-primary hover:text-inverse transition-all duration-200 rounded-brutalist uppercase tracking-wide text-sm"
             >
               View All Projects
               <ArrowRight className="w-4 h-4" />
