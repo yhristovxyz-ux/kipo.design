@@ -117,9 +117,11 @@ const Process: React.FC = () => {
           </EditableText>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Interactive Steps List */}
-          <div className="space-y-4">
+        {/* Contained with borders */}
+        <div className="border-l border-r border-border-primary px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-start py-8">
+            {/* Interactive Steps List */}
+            <div className="space-y-4">
             {steps.map((step, index) => (
               <div
                 key={index}
@@ -216,6 +218,7 @@ const Process: React.FC = () => {
                 {steps[activeStep].details}
               </p>
             </div>
+          </div>
           </div>
         </div>
 
