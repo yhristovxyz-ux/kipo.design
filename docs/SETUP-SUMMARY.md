@@ -8,7 +8,7 @@ The project now has three main branches according to company standards:
 
 - **`dev`** - development branch (current)
 - **`staging`** - staging/beta branch
-- **`master`** - production branch
+- **`main`** - production branch
 
 ```bash
 # View all branches
@@ -17,7 +17,7 @@ git branch
 # Current branch
 * dev
   main
-  master
+  main
   staging
 ```
 
@@ -123,8 +123,8 @@ Complete README with:
    git checkout staging
    git push -u origin staging
    
-   git checkout master
-   git push -u origin master
+   git checkout main
+   git push -u origin main
    
    git checkout dev
    ```
@@ -196,7 +196,7 @@ docs/
 - ✅ Test locally before merge
 
 ### Never:
-- ❌ Don't work directly in dev/staging/master
+- ❌ Don't work directly in dev/staging/main
 - ❌ Don't commit .env files
 - ❌ Don't force push without need
 - ❌ Don't merge without testing
