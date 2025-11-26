@@ -102,7 +102,7 @@ const Studio: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="studio">
-    <section id="studio" className="brutalist-section bg-bg-secondary border-t-2 border-border-primary">
+    <section id="studio" className="brutalist-section bg-bg-secondary ">
       <div className="brutalist-container">
         <div className="text-center mb-16">
           <div className="util-label mb-4">004-STUDIO</div>
@@ -214,7 +214,7 @@ const Studio: React.FC = () => {
         </div>
 
         {/* Studio Stats */}
-        <div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4 mt-16 pt-16 border-t-2 border-border-primary">
+        <div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4 mt-16 pt-16 ">
           <div className="text-center bg-bg-primary p-8">
             <EditableText
               elementId="studio-stat-1-value"

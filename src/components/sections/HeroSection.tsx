@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
           <div className="max-w-5xl mx-auto text-center">
             {/* Badge - Design system style */}
             <div className="inline-flex items-center gap-2 mb-12 brutalist-element px-4 py-2">
-              <span className="util-label">001</span>
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
               <EditableText
                 elementId="hero-badge"
                 onUpdate={(value) => updateContent('badge', value)}
@@ -88,14 +88,16 @@ const HeroSection: React.FC = () => {
               </EditableButton>
             </div>
 
-            {/* Stats - Brutalist Grid */}
-            <div className="mt-24 pt-12 border-t border-border-primary">
-              <div className="brutalist-grid-divided grid-cols-3">
-                {content.stats?.map((stat: any, index: number) => (
-                  <div key={index} className="bg-bg-secondary p-8">
-                    <Stat value={stat.value} label={stat.label} />
-                  </div>
-                ))}
+            {/* Stats - Contained with hatching */}
+            <div className="mt-24">
+              <div className="border-l border-r border-border-primary">
+                <div className="grid grid-cols-3 gap-px brutalist-hatch">
+                  {content.stats?.map((stat: any, index: number) => (
+                    <div key={index} className="bg-bg-primary p-8">
+                      <Stat value={stat.value} label={stat.label} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

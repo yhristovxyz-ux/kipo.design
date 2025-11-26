@@ -75,19 +75,6 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => {
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Start a Project
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 text-text-primary hover:text-primary transition-colors border border-border-primary rounded-brutalist"

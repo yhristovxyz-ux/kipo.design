@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="projects">
-      <section id="work" className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
+      <section id="work" className="brutalist-section bg-bg-primary ">
         <div className="brutalist-container">
           <div className="mb-16">
           <div className="util-label mb-4">006-PROJECTS</div>
