@@ -93,13 +93,13 @@ const Process: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="process">
-    <section id="process" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="process" className="brutalist-section bg-white border-t-2 border-zinc-900">
+      <div className="brutalist-container">
         <div className="text-center mb-16">
           <EditableText
             elementId="process-headline"
             onUpdate={(value) => updateContent('headline', value)}
-            className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
+            className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6"
             as="h2"
           >
             {content.headline || 'Our Simple Process'}
@@ -108,7 +108,7 @@ const Process: React.FC = () => {
           <EditableText
             elementId="process-description"
             onUpdate={(value) => updateContent('description', value)}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-zinc-600 max-w-3xl mx-auto"
             as="p"
             multiline
           >
@@ -125,38 +125,38 @@ const Process: React.FC = () => {
                 onClick={() => handleStepClick(index)}
                 className={`group cursor-pointer transition-all duration-300 relative ${
                   activeStep === index
-                    ? 'bg-indigo-50 border-2 border-indigo-200'
-                    : 'bg-white hover:bg-gray-50 border-2 border-transparent'
-                } rounded-2xl p-6`}
+                    ? 'bg-primary/5 border-2 border-primary'
+                    : 'bg-white hover:bg-zinc-50 border-2 border-zinc-900'
+                } rounded-brutalist p-6`}
               >
                 {isEditMode && (
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-brutalist flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border-2 border-zinc-900">
                     <span className="text-white text-xs">✎</span>
                   </div>
                 )}
                 <div className="flex items-start gap-4">
                   {/* Step Number */}
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-colors ${
+                  <div className={`w-12 h-12 rounded-brutalist flex items-center justify-center font-bold text-lg transition-colors border-2 ${
                     activeStep === index
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-600'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-zinc-900 border-zinc-900 group-hover:bg-zinc-100'
                   }`}>
                     {step.number}
                   </div>
                   
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className={`text-lg font-semibold transition-colors ${
-                        activeStep === index ? 'text-indigo-600' : 'text-gray-900'
+                      <h3 className={`text-lg font-bold transition-colors ${
+                        activeStep === index ? 'text-primary' : 'text-zinc-900'
                       }`}>
                         {step.title}
                       </h3>
-                      <span className="text-sm font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                      <span className="text-sm font-bold text-zinc-900 bg-zinc-100 px-3 py-1 rounded-brutalist border-2 border-zinc-900 uppercase tracking-wide">
                         {step.duration}
                       </span>
                     </div>
                     
-                    <p className={`text-gray-600 leading-relaxed mb-3 transition-all duration-300 ${
+                    <p className={`text-zinc-600 leading-relaxed mb-3 transition-all duration-300 ${
                       activeStep === index ? 'opacity-100' : 'opacity-70'
                     }`}>
                       {step.description}
@@ -164,14 +164,14 @@ const Process: React.FC = () => {
                     
                     {activeStep === index && (
                       <div className="space-y-3 animate-in slide-in-from-top-2 duration-300">
-                        <p className="text-sm text-gray-600 italic">
+                        <p className="text-sm text-zinc-600 italic">
                           {step.details}
                         </p>
                         <div>
-                          <h4 className="text-sm font-medium text-gray-900 mb-2">Key Deliverables:</h4>
+                          <h4 className="text-sm font-bold text-zinc-900 mb-2 uppercase tracking-wide">Key Deliverables:</h4>
                           <div className="flex flex-wrap gap-2">
                             {step.deliverables.map((deliverable, idx) => (
-                              <span key={idx} className="text-xs bg-white text-gray-700 px-3 py-1 rounded-full border border-gray-200">
+                              <span key={idx} className="text-xs bg-white text-zinc-900 px-3 py-1 rounded-brutalist border-2 border-zinc-900 font-bold">
                                 {deliverable}
                               </span>
                             ))}
@@ -187,7 +187,7 @@ const Process: React.FC = () => {
 
           {/* Visual Display */}
           <div className="lg:sticky lg:top-8">
-            <div className="aspect-square bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl overflow-hidden shadow-xl">
+            <div className="aspect-square bg-zinc-100 border-2 border-zinc-900 rounded-brutalist-sm overflow-hidden">
               <EditableImage
                 src={steps[activeStep].image}
                 alt={steps[activeStep].title}
@@ -201,17 +201,17 @@ const Process: React.FC = () => {
             </div>
             
             {/* Step Info Card */}
-            <div className="mt-6 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+            <div className="mt-6 bg-white border-2 border-zinc-900 rounded-brutalist p-6">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
-                  {React.createElement(steps[activeStep].icon, { className: "w-6 h-6 text-indigo-600" })}
+                <div className="w-12 h-12 bg-primary border-2 border-zinc-900 rounded-brutalist flex items-center justify-center">
+                  {React.createElement(steps[activeStep].icon, { className: "w-6 h-6 text-white" })}
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">{steps[activeStep].title}</h3>
-                  <p className="text-sm text-gray-600">{steps[activeStep].duration}</p>
+                  <h3 className="text-xl font-bold text-zinc-900">{steps[activeStep].title}</h3>
+                  <p className="text-sm text-zinc-600 font-bold">{steps[activeStep].duration}</p>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-zinc-600 leading-relaxed">
                 {steps[activeStep].details}
               </p>
             </div>
@@ -220,11 +220,11 @@ const Process: React.FC = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
+          <div className="bg-zinc-100 border-2 border-zinc-900 rounded-brutalist p-8">
             <EditableText
               elementId="process-cta-headline"
               onUpdate={(value) => updateContent('ctaHeadline', value)}
-              className="text-2xl font-semibold text-gray-900 mb-4"
+              className="text-2xl font-bold text-zinc-900 mb-4"
               as="h3"
             >
               {content.ctaHeadline || 'Ready to Get Started?'}
@@ -233,7 +233,7 @@ const Process: React.FC = () => {
             <EditableText
               elementId="process-cta-description"
               onUpdate={(value) => updateContent('ctaDescription', value)}
-              className="text-gray-600 mb-6 max-w-2xl mx-auto"
+              className="text-zinc-600 mb-6 max-w-2xl mx-auto"
               as="p"
               multiline
             >

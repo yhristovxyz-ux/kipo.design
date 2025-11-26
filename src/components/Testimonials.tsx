@@ -4,6 +4,7 @@ import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
 import EditableImage from './atoms/EditableImage';
 import SectionWrapper from './cms/SectionWrapper';
+import { Card, CardContent, Avatar } from '@/design-system';
 
 const Testimonials: React.FC = () => {
   const { sections, updateSection } = useCMS();
@@ -38,13 +39,13 @@ const Testimonials: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="testimonials">
-      <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="brutalist-section bg-white border-t-2 border-zinc-900">
+        <div className="brutalist-container">
           <div className="text-center mb-16">
             <EditableText
               elementId="testimonials-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6"
               as="h2"
             >
               What Our Clients Say
@@ -52,7 +53,7 @@ const Testimonials: React.FC = () => {
             <EditableText
               elementId="testimonials-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-zinc-600 max-w-3xl mx-auto"
               as="p"
               multiline
             >
@@ -62,71 +63,70 @@ const Testimonials: React.FC = () => {
           </div>
 
           {/* Testimonials */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="brutalist-grid">
             {testimonials.map((testimonial, index) => (
-              <div
+              <Card
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative"
+                className="relative"
               >
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
-                  <Quote className="w-4 h-4 text-white" />
-                </div>
-                
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                
-                <EditableText
-                  elementId={`testimonial-quote-${index}`}
-                  onUpdate={(value) => console.log('Update quote:', value)}
-                  className="text-gray-700 text-lg mb-6 leading-relaxed"
-                  as="blockquote"
-                  multiline
-                >
-                  "{testimonial.quote}"
-                </EditableText>
-                
-                <div className="flex items-center">
-                  <EditableImage
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    elementId={`testimonial-avatar-${index}`}
-                    onUpdate={(newSrc, newAlt) => {
-                      console.log('Update avatar:', newSrc, newAlt);
-                    }}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
-                  <div>
-                    <EditableText
-                      elementId={`testimonial-author-${index}`}
-                      onUpdate={(value) => console.log('Update author:', value)}
-                      className="font-semibold text-gray-900"
-                      as="div"
-                    >
-                      {testimonial.author}
-                    </EditableText>
-                    <div className="text-gray-600 text-sm">
+                <CardContent className="p-8">
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-brutalist flex items-center justify-center border-2 border-zinc-900">
+                    <Quote className="w-4 h-4 text-white" />
+                  </div>
+                  
+                  <div className="flex items-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  
+                  <EditableText
+                    elementId={`testimonial-quote-${index}`}
+                    onUpdate={(value) => console.log('Update quote:', value)}
+                    className="text-zinc-700 text-lg mb-6 leading-relaxed"
+                    as="blockquote"
+                    multiline
+                  >
+                    "{testimonial.quote}"
+                  </EditableText>
+                  
+                  <div className="flex items-center">
+                    <Avatar
+                      src={testimonial.avatar}
+                      alt={testimonial.author}
+                      size="md"
+                      className="mr-4"
+                    />
+                    <div>
                       <EditableText
-                        elementId={`testimonial-role-${index}`}
-                        onUpdate={(value) => console.log('Update role:', value)}
-                        as="span"
+                        elementId={`testimonial-author-${index}`}
+                        onUpdate={(value) => console.log('Update author:', value)}
+                        className="font-bold text-zinc-900"
+                        as="div"
                       >
-                        {testimonial.role}
+                        {testimonial.author}
                       </EditableText>
-                      , 
-                      <EditableText
-                        elementId={`testimonial-company-${index}`}
-                        onUpdate={(value) => console.log('Update company:', value)}
-                        as="span"
-                      >
-                        {testimonial.company}
-                      </EditableText>
+                      <div className="text-zinc-600 text-sm">
+                        <EditableText
+                          elementId={`testimonial-role-${index}`}
+                          onUpdate={(value) => console.log('Update role:', value)}
+                          as="span"
+                        >
+                          {testimonial.role}
+                        </EditableText>
+                        , 
+                        <EditableText
+                          elementId={`testimonial-company-${index}`}
+                          onUpdate={(value) => console.log('Update company:', value)}
+                          as="span"
+                        >
+                          {testimonial.company}
+                        </EditableText>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
@@ -135,7 +135,7 @@ const Testimonials: React.FC = () => {
             <EditableText
               elementId="testimonials-clients-title"
               onUpdate={(value) => updateContent('clientsTitle', value)}
-              className="text-gray-600 mb-8"
+              className="text-zinc-600 mb-8 text-sm font-bold uppercase tracking-wider"
               as="p"
             >
               Trusted by innovative companies
@@ -146,7 +146,7 @@ const Testimonials: React.FC = () => {
                   key={index}
                   elementId={`client-${index}`}
                   onUpdate={(value) => console.log('Update client:', value)}
-                  className="text-gray-400 font-semibold text-lg hover:text-gray-600 transition-colors duration-200"
+                  className="text-zinc-900 font-bold text-lg hover:text-primary transition-colors duration-200"
                   as="div"
                 >
                   {client}

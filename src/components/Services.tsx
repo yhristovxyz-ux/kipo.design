@@ -61,13 +61,13 @@ const Services: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="services">
-      <section id="services" className="py-24 bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-20">
+      <section id="services" className="brutalist-section bg-white border-t-2 border-zinc-900">
+        <div className="brutalist-container">
+          <div className="mb-16">
             <EditableText
               elementId="services-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-4xl md:text-5xl font-normal text-gray-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6"
               as="h2"
             >
               {content.headline || 'What We Do'}
@@ -76,7 +76,7 @@ const Services: React.FC = () => {
             <EditableText
               elementId="services-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-gray-600 max-w-2xl"
+              className="text-lg text-zinc-600 max-w-2xl"
               as="p"
               multiline
             >
@@ -84,7 +84,7 @@ const Services: React.FC = () => {
             </EditableText>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="brutalist-grid">
             {services.map((service, index) => (
               <EditableServiceCard
                 key={index}

@@ -42,15 +42,15 @@ const Footer: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="footer">
-      <footer className="bg-gray-900 text-white border-t-2 border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <footer className="bg-zinc-900 text-white border-t-2 border-zinc-900">
+        <div className="brutalist-container py-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div>
               <EditableText
                 elementId="footer-brand"
                 onUpdate={(value) => updateContent('brand', value)}
-                className="text-xl font-mono font-semibold mb-4"
+                className="text-xl font-mono font-bold mb-4"
                 as="h3"
               >
                 kipo.design
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
               <EditableText
                 elementId="footer-description"
                 onUpdate={(value) => updateContent('description', value)}
-                className="text-gray-400 mb-6 leading-relaxed text-sm"
+                className="text-zinc-400 mb-6 leading-relaxed text-sm"
                 as="p"
                 multiline
               >
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                   <a
                     key={index}
                     href={social.href}
-                    className="w-9 h-9 border border-gray-700 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all duration-200"
+                    className="w-9 h-9 border-2 border-zinc-700 rounded-brutalist flex items-center justify-center hover:border-white hover:bg-white hover:text-zinc-900 transition-all duration-200"
                     aria-label={social.label}
                   >
                     <social.icon className="w-4 h-4" />
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 <EditableText
                   elementId={`footer-category-${category.toLowerCase()}`}
                   onUpdate={(value) => updateContent(`category${category}`, value)}
-                  className="font-medium mb-4 text-sm font-mono uppercase text-gray-400"
+                  className="font-bold mb-4 text-sm font-mono uppercase text-zinc-400 tracking-wider"
                   as="h4"
                 >
                   {category}
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                       <EditableText
                         elementId={`footer-link-${category.toLowerCase()}-${index}`}
                         onUpdate={(value) => console.log('Update link:', value)}
-                        className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                        className="text-zinc-400 hover:text-white transition-colors duration-200 text-sm"
                         as="a"
                       >
                         {link.name}
@@ -108,12 +108,12 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Bottom */}
-          <div className="pt-8 border-t border-gray-800">
+          <div className="pt-8 border-t-2 border-zinc-800">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <EditableText
                 elementId="footer-copyright"
                 onUpdate={(value) => updateContent('copyright', value)}
-                className="text-gray-500 text-xs font-mono"
+                className="text-zinc-500 text-xs font-mono font-bold"
                 as="p"
               >
                 © {currentYear} kipo.design. All rights reserved.
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
                 <EditableText
                   elementId="footer-privacy"
                   onUpdate={(value) => updateContent('privacy', value)}
-                  className="text-gray-500 hover:text-white text-xs font-mono transition-colors duration-200"
+                  className="text-zinc-500 hover:text-white text-xs font-mono font-bold transition-colors duration-200"
                   as="a"
                 >
                   Privacy Policy
@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
                 <EditableText
                   elementId="footer-terms"
                   onUpdate={(value) => updateContent('terms', value)}
-                  className="text-gray-500 hover:text-white text-xs font-mono transition-colors duration-200"
+                  className="text-zinc-500 hover:text-white text-xs font-mono font-bold transition-colors duration-200"
                   as="a"
                 >
                   Terms of Service
