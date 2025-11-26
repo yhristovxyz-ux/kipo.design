@@ -6,6 +6,3 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get -y install --no-install-recommends nodejs \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-# Verify installation
-RUN node --version && npm --version

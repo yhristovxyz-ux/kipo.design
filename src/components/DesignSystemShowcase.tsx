@@ -1,424 +1,363 @@
-/**
- * @fileoverview Design System Showcase Page
- * @module components/DesignSystemShowcase
- * 
- * Displays all design system components: atoms, molecules, organisms, and sections.
- */
-
 import React from 'react';
-import { ArrowRight, Mail, User, Search, Check, X } from 'lucide-react';
-import {
-  Button,
-  Input,
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  Badge,
-  Avatar,
-  AvatarGroup,
-} from '@/design-system';
+import { ArrowRight, Check, X, AlertCircle, Info } from 'lucide-react';
+import Button from './atoms/Button';
 
 const DesignSystemShowcase: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white pt-24 pb-16">
-      <div className="brutalist-container">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-zinc-900 mb-4">
-            Design System
-          </h1>
-          <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
-            Brutalist design components following geometric principles, bold typography, and strict grid alignment.
-          </p>
+    <div className="min-h-screen bg-[var(--color-bg-primary)]">
+      {/* Header */}
+      <header className="border-b border-[var(--color-border-primary)] bg-[var(--color-bg-primary)] sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-[var(--color-text-primary)]">Design System</h1>
+              <p className="util-label mt-1">Utilitarian / Technical Blueprint</p>
+            </div>
+            <a href="/" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">
+              ← Back to Site
+            </a>
+          </div>
         </div>
+      </header>
 
-        {/* Atoms Section */}
-        <section className="mb-24">
-          <div className="mb-8 pb-4 border-b-2 border-zinc-900">
-            <h2 className="text-3xl font-bold text-zinc-900 mb-2">Atoms</h2>
-            <p className="text-zinc-600">Basic building blocks - buttons, inputs, badges, avatars</p>
-          </div>
-
-          {/* Buttons */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Buttons</h3>
-            
-            <div className="space-y-8">
-              {/* Variants */}
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Variants</p>
-                <div className="flex flex-wrap gap-4">
-                  <Button variant="primary">Primary Button</Button>
-                  <Button variant="secondary">Secondary Button</Button>
-                  <Button variant="ghost">Ghost Button</Button>
-                  <Button variant="outline">Outline Button</Button>
-                </div>
-              </div>
-
-              {/* Sizes */}
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Sizes</p>
-                <div className="flex flex-wrap items-center gap-4">
-                  <Button size="sm">Small</Button>
-                  <Button size="md">Medium</Button>
-                  <Button size="lg">Large</Button>
-                  <Button size="xl">Extra Large</Button>
-                </div>
-              </div>
-
-              {/* With Icons */}
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">With Icons</p>
-                <div className="flex flex-wrap gap-4">
-                  <Button icon={ArrowRight}>Next Step</Button>
-                  <Button icon={Mail} iconPosition="left" variant="secondary">Send Email</Button>
-                  <Button icon={Check} variant="outline">Confirm</Button>
-                </div>
-              </div>
-
-              {/* States */}
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">States</p>
-                <div className="flex flex-wrap gap-4">
-                  <Button>Normal</Button>
-                  <Button isLoading>Loading</Button>
-                  <Button disabled>Disabled</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Inputs */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Inputs</h3>
-            
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
-              <Input
-                label="Email Address"
-                type="email"
-                placeholder="you@example.com"
-                leftIcon={Mail}
-              />
-              <Input
-                label="Full Name"
-                type="text"
-                placeholder="John Doe"
-                leftIcon={User}
-              />
-              <Input
-                label="Search"
-                type="text"
-                placeholder="Search..."
-                leftIcon={Search}
-                size="lg"
-              />
-              <Input
-                label="With Error"
-                type="text"
-                error="This field is required"
-              />
-              <Input
-                label="With Success"
-                type="text"
-                success="Looks good!"
-                defaultValue="Valid input"
-              />
-              <Input
-                label="With Helper Text"
-                type="text"
-                helperText="We'll never share your information"
-              />
-            </div>
-          </div>
-
-          {/* Badges */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Badges</h3>
-            
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Variants</p>
-                <div className="flex flex-wrap gap-3">
-                  <Badge>Default</Badge>
-                  <Badge variant="primary">Primary</Badge>
-                  <Badge variant="success">Success</Badge>
-                  <Badge variant="error">Error</Badge>
-                  <Badge variant="warning">Warning</Badge>
-                  <Badge variant="info">Info</Badge>
-                  <Badge variant="outline">Outline</Badge>
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Sizes</p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Badge size="sm">Small</Badge>
-                  <Badge size="md">Medium</Badge>
-                  <Badge size="lg">Large</Badge>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Avatars */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Avatars</h3>
-            
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Sizes</p>
-                <div className="flex flex-wrap items-center gap-4">
-                  <Avatar size="sm" fallback="SM" />
-                  <Avatar size="md" fallback="MD" />
-                  <Avatar size="lg" fallback="LG" />
-                  <Avatar size="xl" fallback="XL" />
-                  <Avatar size="2xl" fallback="2XL" />
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Shapes</p>
-                <div className="flex flex-wrap items-center gap-4">
-                  <Avatar shape="circle" fallback="C" />
-                  <Avatar shape="square" fallback="S" />
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Avatar Group</p>
-                <AvatarGroup
-                  avatars={[
-                    { fallback: 'JD' },
-                    { fallback: 'AB' },
-                    { fallback: 'CD' },
-                    { fallback: 'EF' },
-                    { fallback: 'GH' },
-                  ]}
-                  max={3}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Molecules Section */}
-        <section className="mb-24">
-          <div className="mb-8 pb-4 border-b-2 border-zinc-900">
-            <h2 className="text-3xl font-bold text-zinc-900 mb-2">Molecules</h2>
-            <p className="text-zinc-600">Combinations of atoms - cards, forms, navigation</p>
-          </div>
-
-          {/* Cards */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Cards</h3>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Default Card */}
-              <Card>
-                <CardTitle>Default Card</CardTitle>
-                <CardDescription>Basic card with default styling</CardDescription>
-                <CardContent>
-                  <p className="text-zinc-600 mt-4">
-                    This is a default card with standard padding and borders.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Elevated Card */}
-              <Card variant="elevated">
-                <CardTitle>Elevated Card</CardTitle>
-                <CardDescription>Card with shadow elevation</CardDescription>
-                <CardContent>
-                  <p className="text-zinc-600 mt-4">
-                    This card has a subtle shadow for elevation.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Outlined Card */}
-              <Card variant="outlined">
-                <CardTitle>Outlined Card</CardTitle>
-                <CardDescription>Card with border only</CardDescription>
-                <CardContent>
-                  <p className="text-zinc-600 mt-4">
-                    This card uses only borders, no background.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Card with Header and Footer */}
-              <Card variant="default" className="md:col-span-2">
-                <CardHeader>
-                  <CardTitle>Card with Header & Footer</CardTitle>
-                  <CardDescription>Complete card structure</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-zinc-600">
-                    This card demonstrates the full structure with header, content, and footer sections.
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Button size="sm">Action</Button>
-                  <Button size="sm" variant="ghost">Cancel</Button>
-                </CardFooter>
-              </Card>
-
-              {/* Hover Card */}
-              <Card hover variant="gradient">
-                <CardTitle>Hover Card</CardTitle>
-                <CardDescription>Interactive card with hover effect</CardDescription>
-                <CardContent>
-                  <p className="text-zinc-600 mt-4">
-                    Hover over this card to see the effect.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Organisms Section */}
-        <section className="mb-24">
-          <div className="mb-8 pb-4 border-b-2 border-zinc-900">
-            <h2 className="text-3xl font-bold text-zinc-900 mb-2">Organisms</h2>
-            <p className="text-zinc-600">Complex components - forms, grids, layouts</p>
-          </div>
-
-          {/* Form Example */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Form Example</h3>
-            
-            <Card className="max-w-2xl">
-              <CardHeader>
-                <CardTitle>Contact Form</CardTitle>
-                <CardDescription>Send us a message</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <Input
-                    label="Name"
-                    placeholder="Your name"
-                    leftIcon={User}
-                  />
-                  <Input
-                    label="Email"
-                    type="email"
-                    placeholder="you@example.com"
-                    leftIcon={Mail}
-                  />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        {/* Colors */}
+        <section className="mb-16">
+          <div className="util-label mb-4">001-COLORS</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Color Palette</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Backgrounds */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Backgrounds</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#FAFAF8'}}></div>
                   <div>
-                    <label className="block text-sm font-medium text-zinc-900 mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      className="w-full rounded-brutalist border-2 border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent p-4"
-                      rows={4}
-                      placeholder="Your message..."
-                    />
+                    <div className="text-sm font-mono">#FAFAF8</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Primary</div>
                   </div>
                 </div>
-              </CardContent>
-              <CardFooter>
-                <Button icon={ArrowRight}>Send Message</Button>
-              </CardFooter>
-            </Card>
-          </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#F5F5F5'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#F5F5F5</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Secondary</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#F0F0ED'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#F0F0ED</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Tertiary</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* Grid Example */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-zinc-900 mb-6 uppercase tracking-wide">Brutalist Grid</h3>
-            
-            <div className="grid grid-cols-3 gap-px bg-zinc-900">
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="bg-white p-8 flex items-center justify-center">
-                  <span className="text-2xl font-bold font-mono text-zinc-900">{item}</span>
+            {/* Text */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Text</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#1A1A1A'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#1A1A1A</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Primary</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#525252'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#525252</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Secondary</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#737373'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#737373</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Tertiary</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Accent & Functional */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Accent & Functional</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#0066FF'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#0066FF</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Accent</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#059669'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#059669</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Success</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border border-[var(--color-border-primary)]" style={{backgroundColor: '#DC2626'}}></div>
+                  <div>
+                    <div className="text-sm font-mono">#DC2626</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Error</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="util-divider"></div>
+
+        {/* Typography */}
+        <section className="mb-16">
+          <div className="util-label mb-4">002-TYPOGRAPHY</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Typography</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Headings</h3>
+              <div className="space-y-4">
+                <div>
+                  <h1 className="text-5xl font-bold text-[var(--color-text-primary)]">Heading 1</h1>
+                  <p className="util-timestamp mt-1">56px / 3.5rem</p>
+                </div>
+                <div>
+                  <h2 className="text-4xl font-bold text-[var(--color-text-primary)]">Heading 2</h2>
+                  <p className="util-timestamp mt-1">48px / 3rem</p>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-[var(--color-text-primary)]">Heading 3</h3>
+                  <p className="util-timestamp mt-1">40px / 2.5rem</p>
+                </div>
+                <div>
+                  <h4 className="text-2xl font-bold text-[var(--color-text-primary)]">Heading 4</h4>
+                  <p className="util-timestamp mt-1">32px / 2rem</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Body Text</h3>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-lg text-[var(--color-text-primary)]">Large body text for emphasis</p>
+                  <p className="util-timestamp mt-1">18px / 1.125rem</p>
+                </div>
+                <div>
+                  <p className="text-base text-[var(--color-text-primary)]">Base body text for general content</p>
+                  <p className="util-timestamp mt-1">15px / 0.9375rem</p>
+                </div>
+                <div>
+                  <p className="text-sm text-[var(--color-text-secondary)]">Small text for secondary information</p>
+                  <p className="util-timestamp mt-1">13px / 0.8125rem</p>
+                </div>
+                <div>
+                  <p className="util-label">Technical Label</p>
+                  <p className="util-timestamp mt-1">11px / 0.6875rem - Monospace</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="util-divider"></div>
+
+        {/* Buttons */}
+        <section className="mb-16">
+          <div className="util-label mb-4">003-BUTTONS</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Buttons</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Variants</h3>
+              <div className="space-y-4">
+                <div>
+                  <Button variant="primary" size="md">Primary Button</Button>
+                  <p className="util-timestamp mt-2">Electric blue background</p>
+                </div>
+                <div>
+                  <Button variant="secondary" size="md">Secondary Button</Button>
+                  <p className="util-timestamp mt-2">Paper background with border</p>
+                </div>
+                <div>
+                  <Button variant="outline" size="md">Outline Button</Button>
+                  <p className="util-timestamp mt-2">Transparent with border</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Sizes</h3>
+              <div className="space-y-4">
+                <div>
+                  <Button variant="primary" size="lg" icon={ArrowRight}>Large Button</Button>
+                  <p className="util-timestamp mt-2">px-8 py-4 text-lg</p>
+                </div>
+                <div>
+                  <Button variant="primary" size="md" icon={ArrowRight}>Medium Button</Button>
+                  <p className="util-timestamp mt-2">px-6 py-3 text-base</p>
+                </div>
+                <div>
+                  <Button variant="primary" size="sm" icon={ArrowRight}>Small Button</Button>
+                  <p className="util-timestamp mt-2">px-4 py-2 text-sm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="util-divider"></div>
+
+        {/* Spacing */}
+        <section className="mb-16">
+          <div className="util-label mb-4">004-SPACING</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Spacing Scale</h2>
+          
+          <div className="brutalist-block">
+            <h3 className="util-label mb-4">8px Base Grid</h3>
+            <div className="space-y-3">
+              {[
+                { name: 'space-1', value: '8px', rem: '0.5rem' },
+                { name: 'space-2', value: '16px', rem: '1rem' },
+                { name: 'space-3', value: '24px', rem: '1.5rem' },
+                { name: 'space-4', value: '32px', rem: '2rem' },
+                { name: 'space-6', value: '48px', rem: '3rem' },
+                { name: 'space-8', value: '64px', rem: '4rem' },
+                { name: 'space-12', value: '96px', rem: '6rem' },
+              ].map((space) => (
+                <div key={space.name} className="flex items-center gap-4">
+                  <div className="w-32 text-sm font-mono text-[var(--color-text-secondary)]">{space.name}</div>
+                  <div className="h-8 bg-[var(--color-accent-primary)] border border-[var(--color-border-primary)]" style={{width: space.value}}></div>
+                  <div className="text-sm text-[var(--color-text-tertiary)]">{space.value} / {space.rem}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Typography Section */}
-        <section className="mb-24">
-          <div className="mb-8 pb-4 border-b-2 border-zinc-900">
-            <h2 className="text-3xl font-bold text-zinc-900 mb-2">Typography</h2>
-            <p className="text-zinc-600">Brutalist typographic hierarchy</p>
-          </div>
+        <div className="util-divider"></div>
 
+        {/* Borders & Containers */}
+        <section className="mb-16">
+          <div className="util-label mb-4">005-BORDERS</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Borders & Containers</h2>
+          
           <div className="space-y-6">
-            <div>
-              <h1 className="text-7xl font-bold text-zinc-900">Heading 1</h1>
-              <p className="text-sm text-zinc-500 mt-2">7xl - 72px - Bold</p>
-            </div>
-            <div>
-              <h2 className="text-6xl font-bold text-zinc-900">Heading 2</h2>
-              <p className="text-sm text-zinc-500 mt-2">6xl - 60px - Bold</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-zinc-900">Heading 3</h3>
-              <p className="text-sm text-zinc-500 mt-2">4xl - 36px - Bold</p>
-            </div>
-            <div>
-              <p className="text-lg text-zinc-600">
-                Body text - 18px - Regular. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500">
-                Label - 12px - Bold Uppercase
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Colors Section */}
-        <section>
-          <div className="mb-8 pb-4 border-b-2 border-zinc-900">
-            <h2 className="text-3xl font-bold text-zinc-900 mb-2">Colors</h2>
-            <p className="text-zinc-600">Zinc neutral palette + blue accent</p>
-          </div>
-
-          <div className="space-y-8">
-            {/* Primary */}
-            <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Primary (Blue Accent)</p>
-              <div className="flex gap-2">
-                <div className="flex-1 h-20 bg-primary rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-white font-mono text-sm">#3b82f6</span>
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Border Colors (Muted)</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border-2 border-[var(--color-border-primary)]"></div>
+                  <div>
+                    <div className="text-sm font-mono">#D4D4D4</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Primary Border</div>
+                  </div>
                 </div>
-                <div className="flex-1 h-20 bg-primary-hover rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-white font-mono text-sm">#2563eb</span>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 border-2 border-[var(--color-border-secondary)]"></div>
+                  <div>
+                    <div className="text-sm font-mono">#E5E5E5</div>
+                    <div className="text-xs text-[var(--color-text-tertiary)]">Secondary Border</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Zinc */}
-            <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">Zinc (Neutral Palette)</p>
-              <div className="grid grid-cols-5 gap-2">
-                <div className="h-20 bg-zinc-50 rounded-brutalist-sm border-2 border-zinc-200 flex items-center justify-center">
-                  <span className="text-zinc-900 font-mono text-xs">50</span>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="brutalist-block">
+                <h3 className="util-label mb-4">Section Radius (1px)</h3>
+                <p className="text-sm text-[var(--color-text-secondary)] mb-4">Large sections and containers</p>
+                <div className="brutalist-block bg-[var(--color-bg-secondary)]">
+                  <p className="text-[var(--color-text-primary)]">1px border radius for subtle rounding</p>
                 </div>
-                <div className="h-20 bg-zinc-200 rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-zinc-900 font-mono text-xs">200</span>
-                </div>
-                <div className="h-20 bg-zinc-500 rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-white font-mono text-xs">500</span>
-                </div>
-                <div className="h-20 bg-zinc-700 rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-white font-mono text-xs">700</span>
-                </div>
-                <div className="h-20 bg-zinc-900 rounded-brutalist-sm flex items-center justify-center">
-                  <span className="text-white font-mono text-xs">900</span>
+              </div>
+
+              <div className="brutalist-block">
+                <h3 className="util-label mb-4">Interactive Radius (6px)</h3>
+                <p className="text-sm text-[var(--color-text-secondary)] mb-4">Buttons, inputs, chips</p>
+                <div className="brutalist-element p-4 bg-[var(--color-bg-secondary)]">
+                  <p className="text-[var(--color-text-primary)]">6px border radius for interactive elements</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        <div className="util-divider"></div>
+
+        {/* Patterns */}
+        <section className="mb-16">
+          <div className="util-label mb-4">006-PATTERNS</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Background Patterns</h2>
+          
+          <div className="brutalist-block">
+            <h3 className="util-label mb-4">Diagonal Hatching</h3>
+            <p className="text-sm text-[var(--color-text-secondary)] mb-4">Used for technical zones like footers</p>
+            <div className="brutalist-hatch border border-[var(--color-border-primary)] p-8 rounded-section">
+              <p className="text-[var(--color-text-primary)]">Content with hatched background pattern</p>
+              <p className="util-timestamp mt-2">45deg diagonal stripes, 4% opacity</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="util-divider"></div>
+
+        {/* Utility Classes */}
+        <section className="mb-16">
+          <div className="util-label mb-4">007-UTILITIES</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Utility Classes</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Text Utilities</h3>
+              <div className="space-y-3">
+                <div>
+                  <p className="util-label">.util-label</p>
+                  <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Technical monospace label</p>
+                </div>
+                <div>
+                  <p className="util-timestamp">.util-timestamp</p>
+                  <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Monospace metadata</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Layout Utilities</h3>
+              <div className="space-y-3">
+                <div>
+                  <code className="text-xs font-mono text-[var(--color-text-primary)]">.util-container</code>
+                  <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Bordered container</p>
+                </div>
+                <div>
+                  <code className="text-xs font-mono text-[var(--color-text-primary)]">.brutalist-block</code>
+                  <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Bento grid item</p>
+                </div>
+                <div>
+                  <code className="text-xs font-mono text-[var(--color-text-primary)]">.util-divider</code>
+                  <p className="text-xs text-[var(--color-text-tertiary)] mt-1">Edge-to-edge separator</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
+
+      {/* Footer */}
+      <footer className="util-hatch bg-[var(--color-bg-tertiary)] border-t border-[var(--color-border-primary)] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="util-timestamp">Design System v1.0 - Utilitarian / Technical Blueprint</p>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -13,19 +13,117 @@
 @tailwind utilities;
 
 @layer base {
-  /* Brutalist color system - neutral zinc palette + blue accent */
+  /* Brutalist color system with utilitarian refinements */
   :root {
-    --color-primary: #3b82f6;
-    --color-primary-hover: #2563eb;
+    /* === PRIMARY TOKENS (from Tailwind) === */
+    
+    /* Blue scale - Primary/Interactive */
+    --tw-blue-400: #60a5fa;
+    --tw-blue-500: #3b82f6;
+    --tw-blue-600: #2563eb;
+    --tw-blue-700: #1d4ed8;
+    
+    /* Zinc scale - Neutrals */
+    --tw-zinc-50: #fafafa;
+    --tw-zinc-100: #f4f4f5;
+    --tw-zinc-200: #e4e4e7;
+    --tw-zinc-300: #d4d4d8;
+    --tw-zinc-400: #a1a1aa;
+    --tw-zinc-500: #71717a;
+    --tw-zinc-600: #52525b;
+    --tw-zinc-700: #3f3f46;
+    --tw-zinc-800: #27272a;
+    --tw-zinc-900: #18181b;
+    
+    /* Green scale - Success */
+    --tw-green-500: #22c55e;
+    --tw-green-600: #16a34a;
+    --tw-green-700: #15803d;
+    
+    /* Red scale - Error/Danger */
+    --tw-red-500: #ef4444;
+    --tw-red-600: #dc2626;
+    --tw-red-700: #b91c1c;
+    
+    /* Yellow scale - Warning */
+    --tw-yellow-500: #eab308;
+    --tw-yellow-600: #ca8a04;
+    --tw-yellow-700: #a16207;
+    
+    /* Cyan scale - Info */
+    --tw-cyan-500: #06b6d4;
+    --tw-cyan-600: #0891b2;
+    --tw-cyan-700: #0e7490;
+    
+    /* === SEMANTIC TOKENS (derived from primary) === */
+    
+    /* Accent - Electric blue for interactive elements */
+    --color-primary: #0066FF;
+    --color-primary-hover: #0052CC;
+    --color-primary-active: #003D99;
+    
+    /* Background - Off-white paper tones */
+    --color-bg-primary: #FAFAF8;
+    --color-bg-secondary: var(--tw-zinc-100);
+    --color-bg-tertiary: #F0F0ED;
+    --color-bg-hover: var(--tw-zinc-50);
+    --color-bg-active: var(--tw-zinc-200);
+    
+    /* Text - High contrast hierarchy */
+    --color-text-primary: var(--tw-zinc-900);
+    --color-text-secondary: var(--tw-zinc-600);
+    --color-text-tertiary: var(--tw-zinc-500);
+    --color-text-inverse: #FFFFFF;
+    --color-text-muted: var(--tw-zinc-400);
+    
+    /* Borders - Muted for utilitarian aesthetic */
+    --color-border-primary: var(--tw-zinc-300);
+    --color-border-secondary: var(--tw-zinc-200);
+    --color-border-subtle: var(--tw-zinc-100);
+    --color-border-strong: var(--tw-zinc-400);
+    
+    /* Interactive states */
+    --color-interactive-default: var(--color-primary);
+    --color-interactive-hover: var(--color-primary-hover);
+    --color-interactive-active: var(--color-primary-active);
+    --color-interactive-disabled: var(--tw-zinc-300);
+    
+    /* Feedback colors */
+    --color-success: var(--tw-green-600);
+    --color-success-bg: #dcfce7;
+    --color-success-border: var(--tw-green-500);
+    
+    --color-error: var(--tw-red-600);
+    --color-error-bg: #fee2e2;
+    --color-error-border: var(--tw-red-500);
+    
+    --color-warning: var(--tw-yellow-600);
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: var(--tw-yellow-500);
+    
+    --color-info: var(--tw-cyan-600);
+    --color-info-bg: #cffafe;
+    --color-info-border: var(--tw-cyan-500);
+    
+    /* Surface colors */
+    --color-surface-default: var(--color-bg-primary);
+    --color-surface-elevated: #FFFFFF;
+    --color-surface-sunken: var(--tw-zinc-50);
+    
+    /* Border radius - Two-tier system */
+    --radius-section: 1px;  /* Large sections */
+    --radius-interactive: 6px;  /* Buttons, inputs, chips */
   }
 
   * {
-    @apply border-zinc-200;
+    @apply border-zinc-300;  /* Muted default border */
   }
 
   body {
-    @apply bg-white text-zinc-900 font-sans antialiased;
-    @apply selection:bg-primary selection:text-white;
+    @apply font-sans antialiased;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    @apply selection:bg-[#0066FF] selection:text-white;
   }
 
   /* Smooth scrolling */
@@ -68,42 +166,98 @@
     @apply py-section; /* 96px vertical spacing */
   }
 
-  /* Bordered section - side borders */
+  /* Bordered section - side borders (muted) */
   .brutalist-section-bordered {
-    @apply border-l-2 border-r-2 border-zinc-200;
+    border-left: 1px solid var(--color-border-primary);
+    border-right: 1px solid var(--color-border-primary);
   }
 
   /* Accent background section */
   .brutalist-section-accent {
-    @apply bg-zinc-50;
+    background-color: var(--color-bg-secondary);
   }
 
-  /* Grid block - rectangular bordered element */
+  /* Hatched background pattern - for technical zones */
+  .brutalist-hatch {
+    background-color: var(--color-bg-tertiary);
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(26, 26, 26, 0.04) 10px,
+      rgba(26, 26, 26, 0.04) 20px
+    );
+  }
+
+  /* Grid block - rectangular bordered element (1px radius) */
   .brutalist-block {
-    @apply border-2 border-zinc-900 rounded-brutalist-sm; /* 2px rounding */
     @apply p-6 md:p-8;
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-section);
+  }
+  
+  /* Section with border and radius */
+  .brutalist-section-bordered-radius {
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-section);
   }
 
-  /* Small element - buttons, tabs */
+  /* Small element - buttons, tabs (6px radius) */
   .brutalist-element {
-    @apply border-2 border-zinc-900 rounded-brutalist; /* 4px rounding */
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-interactive);
   }
 
-  /* Button - brutalist style */
+  /* Button - brutalist style with utilitarian refinements */
   .brutalist-button {
     @apply brutalist-element px-6 py-3 font-semibold;
     @apply transition-colors duration-150;
-    @apply hover:bg-zinc-900 hover:text-white;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+  
+  .brutalist-button:hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
   }
 
   .brutalist-button-primary {
-    @apply bg-primary text-white border-primary;
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
     @apply hover:bg-primary-hover hover:border-primary-hover;
   }
 
   /* Typography - uppercase labels */
   .brutalist-label {
     @apply text-xs font-bold uppercase tracking-wider text-zinc-500;
+  }
+  
+  /* Utility label - monospace technical label */
+  .util-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-medium);
+  }
+  
+  /* Utility timestamp - monospace metadata */
+  .util-timestamp {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.05em;
+  }
+  
+  /* Utility divider - edge-to-edge separator */
+  .util-divider {
+    width: 100%;
+    height: var(--border-width);
+    background: var(--color-border-primary);
+    margin: var(--space-6) 0;
   }
 
   /* Grid layout - standard gap without black background */

@@ -26,19 +26,19 @@ import { cn } from '@/design-system/utils/cn';
  * Input variant styles using CVA
  */
 const inputVariants = cva(
-  // Base styles - brutalist design
-  'w-full rounded-brutalist border-2 bg-white text-zinc-900 placeholder:text-zinc-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 font-medium',
+  // Base styles - brutalist with utilitarian refinements
+  'w-full rounded-interactive border bg-bg-primary placeholder:text-text-tertiary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:cursor-not-allowed disabled:opacity-50 font-medium',
   {
     variants: {
       size: {
         sm: 'h-9 px-3 text-sm',
         md: 'h-11 px-4 text-base',
-        lg: 'h-13 px-5 text-lg',
+        lg: 'h-14 px-5 text-lg',
       },
       state: {
-        default: 'border-zinc-900 hover:border-primary',
-        error: 'border-red-600 focus:ring-red-600',
-        success: 'border-green-600 focus:ring-green-600',
+        default: 'border-border-primary text-text-primary hover:border-primary',
+        error: 'border-red-600 focus:ring-red-600 text-text-primary',
+        success: 'border-green-600 focus:ring-green-600 text-text-primary',
       },
     },
     defaultVariants: {

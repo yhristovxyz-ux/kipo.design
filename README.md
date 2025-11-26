@@ -1,6 +1,6 @@
 # kipo.design
 
-Modern portfolio website built with React, TypeScript, Vite, and a brutalist design system.
+Modern portfolio website with a brutalist design system refined with utilitarian principles. Built with React, TypeScript, Tailwind CSS, and a custom CMS.
 
 ## 📋 Table of Contents
 
@@ -92,28 +92,31 @@ npx tsc --noEmit
 
 ## 🎨 Design System
 
-This project uses a **brutalist design system** inspired by Momentic.ai with the following principles:
+This project uses a **brutalist design system** refined with **utilitarian principles**:
 
 ### Key Features
 - **Geometric layouts** with strict grid-based design
-- **Bold typography** - all headings use `font-bold`
-- **Zinc neutral palette** with blue accent (#3b82f6)
-- **2px borders** throughout (no thin borders)
-- **Minimal rounding**: 2px for large sections, 4px for small elements
+- **Bold typography** with strong hierarchy
+- **Muted borders** - Light gray (1px, #D4D4D4) instead of harsh black
+- **Two-tier radius**: 1px for sections, 6px for interactive elements
+- **Paper backgrounds** - Off-white (#FAFAF8) for reduced eye strain
+- **Electric blue accent** - #0066FF for interactive elements
+- **Semantic color tokens** - Derived from Tailwind colors
 - **No shadows or gradients** - pure brutalist aesthetic
 
 ### Design System Components
 - Button (4 variants, 4 sizes)
-- Card (with Header, Content, Footer)
-- Input (brutalist styling)
-- Badge (3 variants)
+- Card (with Header, Content, Footer, Title, Description)
+- Input (with validation states)
+- Badge (8 variants)
 - Avatar (with borders)
 - Typography (Heading, Text)
 - Layout (Container, Section)
 
 ### Documentation
-- **[DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)** - Complete design system guide
-- **[FIXES_SUMMARY.md](FIXES_SUMMARY.md)** - Recent fixes and patterns
+- **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Complete design system guide
+- **[BRUTALIST-UTILITARIAN-UPDATE.md](BRUTALIST-UTILITARIAN-UPDATE.md)** - Latest refinements (v1.1)
+- **[BORDER_RADIUS_GUIDE.md](BORDER_RADIUS_GUIDE.md)** - Two-tier radius system
 - **Design System Showcase** - Available at `/design-system` route
 
 ### Quick Example
@@ -196,17 +199,36 @@ git merge dev
 
 ## 📚 Documentation
 
-The project contains detailed documentation:
+**📖 [Complete Documentation Index](DOCUMENTATION-INDEX.md)** - Full guide to all documentation
 
-### Git & Workflow
-- **[WORKFLOW.md](docs/WORKFLOW.md)** - Git workflow and processes
-- **[GIT-GUIDE.md](docs/GIT-GUIDE.md)** - Quick Git reference
-- **[DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Development standards
+### 🎯 Start Here (For AI Agents)
 
-### Design System
-- **[DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)** - Complete design system documentation
-- **[FIXES_SUMMARY.md](FIXES_SUMMARY.md)** - Recent fixes and usage patterns
-- **Design System Showcase** - Interactive component library at `/design-system`
+1. **README.md** (this file) - Project overview and quick start
+2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture and structure
+3. **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Design tokens and components
+4. **[docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Coding standards
+5. **[docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md)** - AI development patterns
+
+### Design System Documentation
+
+- **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Complete design system guide (v1.1)
+- **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Original design docs (reference)
+
+### Development Guides
+
+- **[docs/WORKFLOW.md](docs/WORKFLOW.md)** - Git workflow and processes
+- **[docs/GIT-GUIDE.md](docs/GIT-GUIDE.md)** - Quick Git reference
+- **[docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Standards and patterns
+
+### AI Development
+
+- **[docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md)** - AI-specific development patterns
+- **[docs/AI-DEVELOPMENT-PLAN.md](docs/AI-DEVELOPMENT-PLAN.md)** - AI development strategy
+
+### Project Status
+
+- **[AI-DEVELOPMENT-COMPLETE.md](AI-DEVELOPMENT-COMPLETE.md)** - Completed milestones
+- **[SETUP-COMPLETE.md](SETUP-COMPLETE.md)** - Setup checklist
 
 ---
 

@@ -25,25 +25,25 @@ import { cn } from '@/design-system/utils/cn';
  * Inspired by Momentic.ai card design
  */
 const cardVariants = cva(
-  // Base styles - brutalist design
-  'rounded-brutalist-sm transition-all duration-200 border-2 border-zinc-900 bg-white',
+  // Base styles - brutalist with utilitarian refinements
+  'rounded-section transition-all duration-200 border bg-bg-primary',
   {
     variants: {
       variant: {
-        // Default - White with border
-        default: 'bg-white border-zinc-900',
+        // Default - Paper with muted border
+        default: 'bg-bg-primary border-border-primary',
         
-        // Elevated - Same as default (no shadows in brutalism)
-        elevated: 'bg-white border-zinc-900',
+        // Elevated - Same as default (no shadows)
+        elevated: 'bg-bg-primary border-border-primary',
         
         // Outlined - Border only
-        outlined: 'border-zinc-900 bg-transparent',
+        outlined: 'border-border-primary bg-transparent',
         
-        // Gradient - Not used in brutalism, fallback to default
-        gradient: 'bg-white border-zinc-900',
+        // Gradient - Not used, fallback to default
+        gradient: 'bg-bg-primary border-border-primary',
         
-        // Glass - Not used in brutalism, fallback to default
-        glass: 'bg-white border-zinc-900',
+        // Glass - Not used, fallback to default
+        glass: 'bg-bg-primary border-border-primary',
       },
       
       padding: {
@@ -55,7 +55,7 @@ const cardVariants = cva(
       },
       
       hover: {
-        true: 'hover:border-gray-600 hover:shadow-2xl cursor-pointer hover:-translate-y-1',
+        true: 'hover:border-primary cursor-pointer',
         false: '',
       },
     },
@@ -125,7 +125,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {...props}
       >
         {header && (
-          <div className="mb-4 pb-4 border-b-2 border-zinc-900">
+          <div className="mb-4 pb-4 border-b border-border-primary">
             {header}
           </div>
         )}
@@ -133,7 +133,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         <div>{children}</div>
         
         {footer && (
-          <div className="mt-4 pt-4 border-t-2 border-zinc-900">
+          <div className="mt-4 pt-4 border-t border-border-primary">
             {footer}
           </div>
         )}
@@ -153,7 +153,7 @@ export const CardHeader = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('mb-4 pb-4 border-b-2 border-zinc-900', className)}
+    className={cn('mb-4 pb-4 border-b border-border-primary', className)}
     {...props}
   />
 ));
@@ -181,7 +181,7 @@ export const CardFooter = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('mt-4 pt-4 border-t-2 border-zinc-900', className)}
+    className={cn('mt-4 pt-4 border-t border-border-primary', className)}
     {...props}
   />
 ));
@@ -197,7 +197,7 @@ export const CardTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn('text-xl font-bold text-zinc-900', className)}
+    className={cn('text-xl font-bold text-text-primary', className)}
     {...props}
   />
 ));
@@ -213,7 +213,7 @@ export const CardDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-zinc-600 text-sm', className)}
+    className={cn('text-text-secondary text-sm', className)}
     {...props}
   />
 ));

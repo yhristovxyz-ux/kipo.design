@@ -28,28 +28,28 @@ import { cn } from '@/design-system/utils/cn';
  * Brutalist design system - geometric, bold, no shadows
  */
 const buttonVariants = cva(
-  // Base styles - brutalist aesthetic
-  'inline-flex items-center justify-center font-bold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-2 rounded-brutalist uppercase tracking-wide',
+  // Base styles - brutalist with utilitarian refinements
+  'inline-flex items-center justify-center font-bold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border rounded-interactive uppercase tracking-wide',
   {
     variants: {
       variant: {
-        // Primary - Blue fill
+        // Primary - Electric blue fill (utilitarian)
         primary: 'bg-primary text-white border-primary hover:bg-primary-hover hover:border-primary-hover',
         
-        // Secondary - Outlined black
-        secondary: 'border-zinc-900 text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white',
+        // Secondary - Muted border (utilitarian)
+        secondary: 'border-border-primary text-text-primary bg-bg-primary hover:bg-primary hover:text-white hover:border-primary',
         
         // Ghost - No border
-        ghost: 'border-transparent text-zinc-900 hover:bg-zinc-100',
+        ghost: 'border-transparent text-text-primary hover:bg-bg-secondary',
         
-        // Outline - Zinc border
-        outline: 'border-zinc-300 text-zinc-900 bg-white hover:border-zinc-900',
+        // Outline - Muted border (utilitarian)
+        outline: 'border-border-primary text-text-primary bg-bg-primary hover:border-primary',
       },
       
       size: {
         sm: 'h-9 px-4 text-sm gap-2',
         md: 'h-11 px-6 text-base gap-2',
-        lg: 'h-13 px-8 text-lg gap-3',
+        lg: 'h-14 px-8 text-lg gap-3',
         xl: 'h-16 px-10 text-xl gap-3',
       },
       
