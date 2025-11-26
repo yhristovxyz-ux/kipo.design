@@ -39,13 +39,14 @@ const Testimonials: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="testimonials">
-      <section className="brutalist-section bg-white border-t-2 border-zinc-900">
+      <section className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
         <div className="brutalist-container">
           <div className="text-center mb-16">
+          <div className="util-label mb-4">007-TESTIMONIALS</div>
             <EditableText
               elementId="testimonials-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6"
+              className="text-3xl md:text-5xl font-bold text-text-primary mb-6"
               as="h2"
             >
               What Our Clients Say
@@ -53,7 +54,7 @@ const Testimonials: React.FC = () => {
             <EditableText
               elementId="testimonials-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-xl text-zinc-600 max-w-3xl mx-auto"
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
               as="p"
               multiline
             >
@@ -70,7 +71,7 @@ const Testimonials: React.FC = () => {
                 className="relative"
               >
                 <CardContent className="p-8">
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-brutalist flex items-center justify-center border-2 border-zinc-900">
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-brutalist flex items-center justify-center border border-border-primary">
                     <Quote className="w-4 h-4 text-white" />
                   </div>
                   
@@ -83,7 +84,7 @@ const Testimonials: React.FC = () => {
                   <EditableText
                     elementId={`testimonial-quote-${index}`}
                     onUpdate={(value) => console.log('Update quote:', value)}
-                    className="text-zinc-700 text-lg mb-6 leading-relaxed"
+                    className="text-text-secondary text-lg mb-6 leading-relaxed"
                     as="blockquote"
                     multiline
                   >
@@ -101,12 +102,12 @@ const Testimonials: React.FC = () => {
                       <EditableText
                         elementId={`testimonial-author-${index}`}
                         onUpdate={(value) => console.log('Update author:', value)}
-                        className="font-bold text-zinc-900"
+                        className="font-bold text-text-primary"
                         as="div"
                       >
                         {testimonial.author}
                       </EditableText>
-                      <div className="text-zinc-600 text-sm">
+                      <div className="text-text-secondary text-sm">
                         <EditableText
                           elementId={`testimonial-role-${index}`}
                           onUpdate={(value) => console.log('Update role:', value)}
@@ -135,7 +136,7 @@ const Testimonials: React.FC = () => {
             <EditableText
               elementId="testimonials-clients-title"
               onUpdate={(value) => updateContent('clientsTitle', value)}
-              className="text-zinc-600 mb-8 text-sm font-bold uppercase tracking-wider"
+              className="text-text-secondary mb-8 text-sm font-bold uppercase tracking-wider"
               as="p"
             >
               Trusted by innovative companies
@@ -146,7 +147,7 @@ const Testimonials: React.FC = () => {
                   key={index}
                   elementId={`client-${index}`}
                   onUpdate={(value) => console.log('Update client:', value)}
-                  className="text-zinc-900 font-bold text-lg hover:text-primary transition-colors duration-200"
+                  className="text-text-primary font-bold text-lg hover:text-primary transition-colors duration-200"
                   as="div"
                 >
                   {client}

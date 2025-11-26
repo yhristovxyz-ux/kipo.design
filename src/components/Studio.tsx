@@ -102,13 +102,14 @@ const Studio: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="studio">
-    <section id="studio" className="brutalist-section bg-zinc-50 border-t-2 border-zinc-900">
+    <section id="studio" className="brutalist-section bg-bg-secondary border-t-2 border-border-primary">
       <div className="brutalist-container">
         <div className="text-center mb-16">
+          <div className="util-label mb-4">004-STUDIO</div>
           <EditableText
             elementId="studio-headline"
             onUpdate={(value) => updateContent('headline', value)}
-            className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6"
+            className="text-3xl md:text-5xl font-bold text-text-primary mb-6"
             as="h2"
           >
             Meet the Studio Behind
@@ -119,7 +120,7 @@ const Studio: React.FC = () => {
           <EditableText
             elementId="studio-description"
             onUpdate={(value) => updateContent('description', value)}
-            className="text-xl text-zinc-600 max-w-3xl mx-auto"
+            className="text-xl text-text-secondary max-w-3xl mx-auto"
             as="p"
             multiline
           >
@@ -136,20 +137,20 @@ const Studio: React.FC = () => {
                 onClick={() => handleContentClick(index)}
                 className={`group cursor-pointer p-6 rounded-brutalist transition-all duration-300 relative ${
                   activeContent === index
-                    ? 'bg-white border-2 border-primary'
-                    : 'bg-white hover:bg-zinc-50 border-2 border-zinc-900'
+                    ? 'bg-bg-primary border border-primary'
+                    : 'bg-bg-primary hover:bg-bg-secondary border border-border-primary'
                 }`}
               >
                 {isEditMode && (
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-brutalist flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border-2 border-zinc-900">
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-brutalist flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-border-primary">
                     <span className="text-white text-xs">✎</span>
                   </div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-brutalist flex items-center justify-center transition-colors border-2 ${
+                  <div className={`w-12 h-12 rounded-brutalist flex items-center justify-center transition-colors border ${
                     activeContent === index
                       ? 'bg-primary text-white border-primary'
-                      : 'bg-white text-zinc-900 border-zinc-900 group-hover:bg-zinc-100'
+                      : 'bg-bg-primary text-text-primary border-border-primary group-hover:bg-bg-secondary'
                   }`}>
                     <content.icon className="w-6 h-6" />
                   </div>
@@ -157,16 +158,16 @@ const Studio: React.FC = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className={`text-lg font-bold transition-colors ${
-                        activeContent === index ? 'text-primary' : 'text-zinc-900'
+                        activeContent === index ? 'text-primary' : 'text-text-primary'
                       }`}>
                         {content.title}
                       </h3>
-                      <span className="text-sm font-bold text-zinc-900 bg-zinc-100 px-3 py-1 rounded-brutalist border-2 border-zinc-900 uppercase tracking-wide">
+                      <span className="text-sm font-bold text-text-primary bg-bg-secondary px-3 py-1 rounded-brutalist border border-border-primary uppercase tracking-wide">
                         {content.stats}
                       </span>
                     </div>
                     
-                    <p className={`text-zinc-600 leading-relaxed transition-all duration-300 ${
+                    <p className={`text-text-secondary leading-relaxed transition-all duration-300 ${
                       activeContent === index ? 'opacity-100' : 'opacity-70'
                     }`}>
                       {content.description}
@@ -179,7 +180,7 @@ const Studio: React.FC = () => {
 
           {/* Media Display */}
           <div className="relative">
-            <div className="aspect-square bg-zinc-100 border-2 border-zinc-900 rounded-brutalist-sm overflow-hidden">
+            <div className="aspect-square bg-bg-secondary border border-border-primary rounded-brutalist-sm overflow-hidden">
               <div className="relative w-full h-full">
                 <EditableImage
                   src={studioContent[activeContent].media.url}
@@ -194,7 +195,7 @@ const Studio: React.FC = () => {
                 
                 {/* Video Play Overlay */}
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-16 bg-white border-2 border-zinc-900 rounded-brutalist flex items-center justify-center">
+                  <div className="w-16 h-16 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center">
                     <Play className="w-8 h-8 text-primary ml-1" />
                   </div>
                 </div>
@@ -202,23 +203,23 @@ const Studio: React.FC = () => {
             </div>
             
             {/* Floating Elements */}
-            <div className="absolute -top-8 -right-8 w-16 h-16 bg-white border-2 border-zinc-900 rounded-brutalist flex items-center justify-center animate-float">
+            <div className="absolute -top-8 -right-8 w-16 h-16 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center animate-float">
               <div className="w-8 h-8 bg-primary rounded-brutalist"></div>
             </div>
             
-            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-white border-2 border-zinc-900 rounded-brutalist flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
               <div className="w-10 h-10 bg-primary rounded-brutalist"></div>
             </div>
           </div>
         </div>
 
         {/* Studio Stats */}
-        <div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4 mt-16 pt-16 border-t-2 border-zinc-900">
-          <div className="text-center bg-white p-8">
+        <div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4 mt-16 pt-16 border-t-2 border-border-primary">
+          <div className="text-center bg-bg-primary p-8">
             <EditableText
               elementId="studio-stat-1-value"
               onUpdate={(value) => updateContent('stat1Value', value)}
-              className="text-3xl md:text-4xl font-bold text-zinc-900"
+              className="text-3xl md:text-4xl font-bold text-text-primary"
               as="div"
             >
               5+
@@ -226,17 +227,17 @@ const Studio: React.FC = () => {
             <EditableText
               elementId="studio-stat-1-label"
               onUpdate={(value) => updateContent('stat1Label', value)}
-              className="text-zinc-600 mt-2 text-sm font-bold uppercase tracking-wide"
+              className="text-text-secondary mt-2 text-sm font-bold uppercase tracking-wide"
               as="div"
             >
               Years Experience
             </EditableText>
           </div>
-          <div className="text-center bg-white p-8">
+          <div className="text-center bg-bg-primary p-8">
             <EditableText
               elementId="studio-stat-2-value"
               onUpdate={(value) => updateContent('stat2Value', value)}
-              className="text-3xl md:text-4xl font-bold text-zinc-900"
+              className="text-3xl md:text-4xl font-bold text-text-primary"
               as="div"
             >
               50+
@@ -244,17 +245,17 @@ const Studio: React.FC = () => {
             <EditableText
               elementId="studio-stat-2-label"
               onUpdate={(value) => updateContent('stat2Label', value)}
-              className="text-zinc-600 mt-2 text-sm font-bold uppercase tracking-wide"
+              className="text-text-secondary mt-2 text-sm font-bold uppercase tracking-wide"
               as="div"
             >
               Happy Clients
             </EditableText>
           </div>
-          <div className="text-center bg-white p-8">
+          <div className="text-center bg-bg-primary p-8">
             <EditableText
               elementId="studio-stat-3-value"
               onUpdate={(value) => updateContent('stat3Value', value)}
-              className="text-3xl md:text-4xl font-bold text-zinc-900"
+              className="text-3xl md:text-4xl font-bold text-text-primary"
               as="div"
             >
               200+
@@ -262,17 +263,17 @@ const Studio: React.FC = () => {
             <EditableText
               elementId="studio-stat-3-label"
               onUpdate={(value) => updateContent('stat3Label', value)}
-              className="text-zinc-600 mt-2 text-sm font-bold uppercase tracking-wide"
+              className="text-text-secondary mt-2 text-sm font-bold uppercase tracking-wide"
               as="div"
             >
               Projects Completed
             </EditableText>
           </div>
-          <div className="text-center bg-white p-8">
+          <div className="text-center bg-bg-primary p-8">
             <EditableText
               elementId="studio-stat-4-value"
               onUpdate={(value) => updateContent('stat4Value', value)}
-              className="text-3xl md:text-4xl font-bold text-zinc-900"
+              className="text-3xl md:text-4xl font-bold text-text-primary"
               as="div"
             >
               98%
@@ -280,7 +281,7 @@ const Studio: React.FC = () => {
             <EditableText
               elementId="studio-stat-4-label"
               onUpdate={(value) => updateContent('stat4Label', value)}
-              className="text-zinc-600 mt-2 text-sm font-bold uppercase tracking-wide"
+              className="text-text-secondary mt-2 text-sm font-bold uppercase tracking-wide"
               as="div"
             >
               Client Satisfaction

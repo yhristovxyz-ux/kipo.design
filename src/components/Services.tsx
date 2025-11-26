@@ -61,13 +61,14 @@ const Services: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="services">
-      <section id="services" className="brutalist-section bg-white border-t-2 border-zinc-900">
+      <section id="services" className="brutalist-section bg-bg-primary border-t border-border-primary">
         <div className="brutalist-container">
           <div className="mb-16">
+            <div className="util-label mb-4">002-SERVICES</div>
             <EditableText
               elementId="services-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-text-primary mb-6"
               as="h2"
             >
               {content.headline || 'What We Do'}
@@ -76,7 +77,7 @@ const Services: React.FC = () => {
             <EditableText
               elementId="services-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-zinc-600 max-w-2xl"
+              className="text-lg text-text-secondary max-w-2xl"
               as="p"
               multiline
             >
