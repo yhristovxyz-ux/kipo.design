@@ -425,6 +425,81 @@ import { Badge } from '@/design-system/components/primitives/Badge';
 - Font: Bold, uppercase, tracked
 - Padding: Size-dependent
 
+### Stat
+
+**Purpose:** Display metrics and statistics
+
+```tsx
+import { Stat } from '@/design-system/components/primitives/Stat';
+
+<Stat value="100+" label="Projects Completed" />
+```
+
+**Styles:**
+- Value: 3xl-4xl, bold, monospace
+- Label: util-label class
+- Center aligned
+
+### SectionHeader
+
+**Purpose:** Consistent section headers with technical labels
+
+```tsx
+import { SectionHeader } from '@/design-system/components/primitives/SectionHeader';
+
+<SectionHeader 
+  label="001-HERO" 
+  title="Welcome" 
+  description="Optional description"
+  align="center"
+/>
+```
+
+**Props:**
+- label: Technical section label
+- title: Section heading
+- description: Optional description
+- align: 'left' | 'center'
+
+### IconBox
+
+**Purpose:** Icon containers with borders
+
+```tsx
+import { IconBox } from '@/design-system/components/primitives/IconBox';
+
+<IconBox icon="Mail" size="md" variant="default" />
+```
+
+**Variants:** default, secondary, primary  
+**Sizes:** sm (8x8), md (12x12), lg (16x16)
+
+**Styles:**
+- Border: 1px solid
+- Radius: 6px (interactive)
+- Centered icon
+
+### ContactInfo
+
+**Purpose:** Display contact information with icons
+
+```tsx
+import { ContactInfo } from '@/design-system/components/primitives/ContactInfo';
+
+<ContactInfo 
+  icon="Mail" 
+  label="Email" 
+  value="hello@kipo.design"
+  href="mailto:hello@kipo.design"
+/>
+```
+
+**Props:**
+- icon: Lucide icon name
+- label: Contact type
+- value: Contact value
+- href: Optional link
+
 ---
 
 ## Utilities

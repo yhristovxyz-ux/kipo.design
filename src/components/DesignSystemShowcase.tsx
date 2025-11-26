@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight, Check, X, AlertCircle, Info } from 'lucide-react';
+import { ArrowRight, Check, X, AlertCircle, Info, Mail, Phone, MapPin } from 'lucide-react';
 import Button from './atoms/Button';
+import { Stat, SectionHeader, IconBox, ContactInfo } from '../design-system';
 
 const DesignSystemShowcase: React.FC = () => {
   return (
@@ -310,9 +311,64 @@ const DesignSystemShowcase: React.FC = () => {
 
         <div className="util-divider"></div>
 
+        {/* New Components */}
+        <section className="mb-16">
+          <div className="util-label mb-4">007-NEW-COMPONENTS</div>
+          <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">New Components</h2>
+          
+          <div className="space-y-8">
+            {/* Stat Component */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Stat Component</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-4">Display metrics and statistics</p>
+              <div className="grid grid-cols-3 gap-6">
+                <Stat value="100+" label="Projects" />
+                <Stat value="50+" label="Clients" />
+                <Stat value="5yrs" label="Experience" />
+              </div>
+            </div>
+
+            {/* SectionHeader Component */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Section Header</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-4">Consistent section headers</p>
+              <SectionHeader 
+                label="001-EXAMPLE" 
+                title="Section Title" 
+                description="Optional description text for the section"
+              />
+            </div>
+
+            {/* IconBox Component */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Icon Box</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-4">Icon containers with borders</p>
+              <div className="flex gap-4">
+                <IconBox icon="Mail" size="sm" variant="default" />
+                <IconBox icon="Phone" size="md" variant="default" />
+                <IconBox icon="MapPin" size="lg" variant="default" />
+                <IconBox icon="Check" size="md" variant="primary" />
+              </div>
+            </div>
+
+            {/* ContactInfo Component */}
+            <div className="brutalist-block">
+              <h3 className="util-label mb-4">Contact Info</h3>
+              <p className="text-sm text-[var(--color-text-secondary)] mb-4">Contact information with icons</p>
+              <div className="space-y-4">
+                <ContactInfo icon={Mail} label="Email" value="hello@kipo.design" />
+                <ContactInfo icon={Phone} label="Phone" value="+1 (555) 123-4567" />
+                <ContactInfo icon={MapPin} label="Location" value="San Francisco, CA" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="util-divider"></div>
+
         {/* Utility Classes */}
         <section className="mb-16">
-          <div className="util-label mb-4">007-UTILITIES</div>
+          <div className="util-label mb-4">008-UTILITIES</div>
           <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-8">Utility Classes</h2>
           
           <div className="grid md:grid-cols-2 gap-6">

@@ -36,3 +36,19 @@ export type { AvatarProps, AvatarGroupProps } from './Avatar';
 // Typography
 export { Heading, Text } from './Typography';
 export type { HeadingProps, TextProps } from './Typography';
+
+// Stat
+export { Stat } from './Stat';
+export type { StatProps } from './Stat';
+
+// SectionHeader
+export { SectionHeader } from './SectionHeader';
+export type { SectionHeaderProps } from './SectionHeader';
+
+// IconBox
+export { IconBox } from './IconBox';
+export type { IconBoxProps } from './IconBox';
+
+// ContactInfo
+export { ContactInfo } from './ContactInfo';
+export type { ContactInfoProps } from './ContactInfo';
