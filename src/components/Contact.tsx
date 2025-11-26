@@ -3,7 +3,7 @@ import { Send, Calendar, Mail, Phone, MapPin } from 'lucide-react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
 import SectionWrapper from './cms/SectionWrapper';
-import { Input, Button, Card, CardContent } from '@/design-system';
+import { Input, Button, Card, CardContent, ContactInfo } from '@/design-system';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -188,22 +188,12 @@ const Contact: React.FC = () => {
 
                   <div className="space-y-4">
                     {contactInfo.map((info, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-8 h-8 border border-border-primary rounded-brutalist flex items-center justify-center flex-shrink-0 mt-1">
-                          <info.icon className="w-4 h-4 text-text-primary" />
-                        </div>
-                        <div>
-                          <div className="text-xs text-text-tertiary mb-1 font-mono uppercase font-bold">{info.label}</div>
-                          <EditableText
-                            elementId={`contact-info-${index}`}
-                            onUpdate={(value) => updateContent(`contactInfo${index}`, value)}
-                            className="text-sm text-text-primary"
-                            as="div"
-                          >
-                            {info.value}
-                          </EditableText>
-                        </div>
-                      </div>
+                      <ContactInfo
+                        key={index}
+                        icon={info.icon}
+                        label={info.label}
+                        value={info.value}
+                      />
                     ))}
                   </div>
                 </CardContent>

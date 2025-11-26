@@ -9,6 +9,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useCMS } from '../../contexts/CMSContext';
+import { Stat } from '../../design-system/components/primitives/Stat';
 import EditableText from '../atoms/EditableText';
 import EditableButton from '../atoms/EditableButton';
 import SectionWrapper from '../cms/SectionWrapper';
@@ -91,31 +92,8 @@ const HeroSection: React.FC = () => {
             <div className="mt-24 pt-12 border-t border-border-primary">
               <div className="brutalist-grid-divided grid-cols-3">
                 {content.stats?.map((stat: any, index: number) => (
-                  <div key={index} className="bg-bg-secondary p-8 text-center">
-                    <EditableText
-                      elementId={`hero-stat-value-${index}`}
-                      onUpdate={(value) => {
-                        const newStats = [...content.stats];
-                        newStats[index] = { ...newStats[index], value };
-                        updateContent('stats', newStats);
-                      }}
-                      className="text-3xl md:text-4xl font-bold font-mono text-text-primary mb-2"
-                      as="div"
-                    >
-                      {stat.value}
-                    </EditableText>
-                    <EditableText
-                      elementId={`hero-stat-label-${index}`}
-                      onUpdate={(value) => {
-                        const newStats = [...content.stats];
-                        newStats[index] = { ...newStats[index], label: value };
-                        updateContent('stats', newStats);
-                      }}
-                      className="util-label"
-                      as="div"
-                    >
-                      {stat.label}
-                    </EditableText>
+                  <div key={index} className="bg-bg-secondary p-8">
+                    <Stat value={stat.value} label={stat.label} />
                   </div>
                 ))}
               </div>
