@@ -83,8 +83,6 @@ const Contact: React.FC = () => {
                   </EditableText>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Contained with borders */}
-        <div className="border-l border-r border-border-primary px-8 py-8">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
@@ -115,8 +113,6 @@ const Contact: React.FC = () => {
                       </div>
                     </div>
 
-        {/* Contained with borders */}
-        <div className="border-l border-r border-border-primary px-8 py-8">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-text-primary mb-2 uppercase tracking-wide">
@@ -236,6 +232,7 @@ const Contact: React.FC = () => {
               </Card>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </SectionWrapper>
