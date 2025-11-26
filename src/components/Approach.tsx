@@ -47,7 +47,7 @@ const Approach: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="approach">
-    <section className="brutalist-section bg-bg-secondary border-t-2 border-border-primary">
+    <section className="brutalist-section bg-bg-secondary ">
       <div className="brutalist-container">
         <div className="text-center mb-16">
           <div className="util-label mb-4">005-APPROACH</div>

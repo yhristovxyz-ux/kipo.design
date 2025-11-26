@@ -93,7 +93,7 @@ const Process: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="process">
-    <section id="process" className="brutalist-section bg-bg-primary border-t border-border-primary">
+    <section id="process" className="brutalist-section bg-bg-primary ">
       <div className="brutalist-container">
         <div className="text-center mb-16">
           <div className="util-label mb-4">003-PROCESS</div>

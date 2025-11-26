@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="contact">
-      <section id="contact" className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
+      <section id="contact" className="brutalist-section bg-bg-primary ">
         <div className="brutalist-container">
           <div className="mb-16">
             <EditableText

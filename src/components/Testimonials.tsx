@@ -39,7 +39,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="testimonials">
-      <section className="brutalist-section bg-bg-primary border-t-2 border-border-primary">
+      <section className="brutalist-section bg-bg-primary ">
         <div className="brutalist-container">
           <div className="text-center mb-16">
           <div className="util-label mb-4">007-TESTIMONIALS</div>

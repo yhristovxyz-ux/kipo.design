@@ -61,7 +61,7 @@ const Services: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="services">
-      <section id="services" className="brutalist-section bg-bg-primary border-t border-border-primary">
+      <section id="services" className="brutalist-section bg-bg-primary">
         <div className="brutalist-container">
           <div className="mb-16">
             <div className="util-label mb-4">002-SERVICES</div>
@@ -85,15 +85,46 @@ const Services: React.FC = () => {
             </EditableText>
           </div>
 
-          <div className="brutalist-grid">
-            {services.map((service, index) => (
-              <EditableServiceCard
-                key={index}
-                service={service}
-                index={index}
-                onUpdate={updateService}
-              />
-            ))}
+          {/* Full-width contained grid */}
+          <div className="border-l border-r border-border-primary">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px brutalist-hatch">
+              {services.map((service, index) => (
+                <div key={index} className="bg-bg-primary p-8 border-t border-border-primary">
+                  {/* Isometric illustration placeholder */}
+                  <div className="w-full h-48 mb-6 bg-bg-secondary border border-border-primary rounded-section flex items-center justify-center">
+                    <div className="text-6xl opacity-20">{service.icon.name.charAt(0)}</div>
+                  </div>
+                  
+                  <EditableText
+                    elementId={`service-title-${index}`}
+                    onUpdate={(value) => updateService(index, { ...service, title: value })}
+                    className="text-xl font-bold text-text-primary mb-3"
+                    as="h3"
+                  >
+                    {service.title}
+                  </EditableText>
+                  
+                  <EditableText
+                    elementId={`service-description-${index}`}
+                    onUpdate={(value) => updateService(index, { ...service, description: value })}
+                    className="text-sm text-text-secondary mb-4"
+                    as="p"
+                    multiline
+                  >
+                    {service.description}
+                  </EditableText>
+                  
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start text-xs text-text-tertiary">
+                        <span className="font-mono mr-2">→</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
