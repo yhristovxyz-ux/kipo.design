@@ -71,7 +71,11 @@ export interface ButtonProps
   children: ReactNode;
   /** Optional icon component (from lucide-react) */
   icon?: React.ComponentType<{ className?: string }>;
-  /** Icon position */
+  /** Left icon component */
+  leftIcon?: React.ComponentType<{ className?: string }>;
+  /** Right icon component */
+  rightIcon?: React.ComponentType<{ className?: string }>;
+  /** Icon position (deprecated, use leftIcon/rightIcon) */
   iconPosition?: 'left' | 'right';
   /** Loading state */
   isLoading?: boolean;
@@ -106,6 +110,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       fullWidth,
       icon: Icon,
+      leftIcon: LeftIcon,
+      rightIcon: RightIcon,
       iconPosition = 'right',
       isLoading = false,
       className,
@@ -115,6 +121,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    // Support both old icon prop and new leftIcon/rightIcon props
+    const FinalLeftIcon = LeftIcon || (Icon && iconPosition === 'left' ? Icon : undefined);
+    const FinalRightIcon = RightIcon || (Icon && iconPosition === 'right' ? Icon : undefined);
+
     return (
       <button
         ref={ref}
@@ -148,9 +158,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         ) : (
           <>
-            {Icon && iconPosition === 'left' && <Icon className="w-5 h-5" />}
+            {FinalLeftIcon && <FinalLeftIcon className="w-5 h-5" />}
             <span>{children}</span>
-            {Icon && iconPosition === 'right' && <Icon className="w-5 h-5" />}
+            {FinalRightIcon && <FinalRightIcon className="w-5 h-5" />}
           </>
         )}
       </button>

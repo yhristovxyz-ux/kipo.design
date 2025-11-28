@@ -2,18 +2,10 @@ import React from 'react';
 import EditableText from '@/components/atoms/EditableText';
 import EditableImage from '@/components/atoms/EditableImage';
 import { Isocon } from '@/design-system/components/primitives/Isocon';
+import { Project } from '@/types';
 
 interface ProjectCardProps {
-  project: {
-    id: number;
-    title: string;
-    description: string;
-    image?: string;
-    icon?: string;
-    tags: string[];
-    year: string;
-    client: string;
-  };
+  project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
@@ -31,8 +23,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             }}
             className="w-full h-full object-cover"
           />
+        ) : project.icon?.type === 'svg' && project.icon.value ? (
+          <div
+            className="w-32 h-32"
+            dangerouslySetInnerHTML={{ __html: project.icon.value }}
+          />
         ) : (
-          <Isocon name={project.icon || 'briefcase'} size={128} />
+          <Isocon name={project.icon?.value || 'briefcase'} size={128} />
         )}
       </div>
 

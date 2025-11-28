@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Edit } from 'lucide-react';
 import { useCMS } from '../../contexts/CMSContext';
+import { ImageUploader } from './ImageUploader';
 
 interface EditableImageProps {
   src: string;
@@ -47,42 +48,39 @@ const EditableImage: React.FC<EditableImageProps> = ({
   if (isEditMode && isEditing) {
     return (
       <div className="relative">
-        <div className="border-2 border-blue-500 rounded-lg p-4 bg-white">
+        <div className="border-2 border-primary rounded-section p-4 bg-bg-primary">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Image URL
+              <label className="block text-sm font-medium text-text-primary mb-2">
+                Upload New Image
               </label>
-              <input
-                type="url"
-                value={newSrc}
-                onChange={(e) => setNewSrc(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="https://example.com/image.jpg"
+              <ImageUploader
+                currentImage={newSrc}
+                onImageChange={(url) => setNewSrc(url)}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-text-primary mb-2">
                 Alt Text
               </label>
               <input
                 type="text"
                 value={newAlt}
                 onChange={(e) => setNewAlt(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-border-primary rounded-interactive bg-bg-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Describe the image"
               />
             </div>
             <div className="flex gap-2">
               <button
                 onClick={handleSave}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-primary text-white rounded-interactive hover:bg-primary-hover"
               >
                 Save
               </button>
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                className="px-4 py-2 bg-bg-secondary text-text-primary rounded-interactive hover:bg-bg-tertiary"
               >
                 Cancel
               </button>

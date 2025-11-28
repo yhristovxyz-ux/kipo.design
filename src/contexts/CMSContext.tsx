@@ -1,48 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { apiService } from '../services/api.service';
+import type { SectionConfig, CMSContextType } from '../types/cms.types';
 
-export interface MediaItem {
-  type: 'image' | 'video';
-  url: string;
-  alt?: string;
-}
-
-export interface ButtonConfig {
-  text: string;
-  href: string;
-  variant: 'primary' | 'secondary' | 'outline';
-}
-
-export interface IconConfig {
-  name: string;
-  color?: string;
-  size?: number;
-}
-
-export interface SectionConfig {
-  id: string;
-  name: string;
-  enabled: boolean;
-  order: number;
-  content: Record<string, unknown>;
-}
-
-interface CMSContextType {
-  isEditMode: boolean;
-  setEditMode: (enabled: boolean) => void;
-  showSectionManager: boolean;
-  setShowSectionManager: (show: boolean) => void;
-  sections: SectionConfig[];
-  updateSection: (sectionId: string, content: Record<string, unknown>) => void;
-  reorderSections: (sections: SectionConfig[]) => void;
-  duplicateSection: (sectionId: string) => void;
-  toggleSection: (sectionId: string) => void;
-  deleteSection?: (sectionId: string) => void;
-  selectedElement: string | null;
-  setSelectedElement: (elementId: string | null) => void;
-}
+export type { MediaItem, ButtonConfig, IconConfig, SectionConfig } from '../types/cms.types';
 
 const CMSContext = createContext<CMSContextType | undefined>(undefined);
+const USE_API = import.meta.env.VITE_USE_API === 'true';
 
 const defaultSections: SectionConfig[] = [
   {
@@ -206,8 +170,53 @@ const defaultSections: SectionConfig[] = [
 export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isEditMode, setEditMode] = useState(false);
   const [showSectionManager, setShowSectionManager] = useState(false);
-  const [sections, setSections] = useState<SectionConfig[]>(defaultSections);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [sections, setSections] = useState<SectionConfig[]>(defaultSections);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load sections from API or localStorage
+  useEffect(() => {
+    const loadSections = async () => {
+      try {
+        if (USE_API) {
+          const apiSections = await apiService.getSections();
+          if (apiSections && apiSections.length > 0) {
+            setSections(apiSections);
+          }
+        } else {
+          const stored = localStorage.getItem('kipo_sections');
+          if (stored) {
+            setSections(JSON.parse(stored));
+          }
+        }
+      } catch (error) {
+        console.error('Error loading sections:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadSections();
+  }, []);
+
+  // Persist sections whenever they change
+  useEffect(() => {
+    if (isLoading) return;
+
+    const saveSections = async () => {
+      try {
+        if (USE_API) {
+          await apiService.saveSections(sections);
+        } else {
+          localStorage.setItem('kipo_sections', JSON.stringify(sections));
+        }
+      } catch (error) {
+        console.error('Error saving sections:', error);
+      }
+    };
+
+    saveSections();
+  }, [sections, isLoading]);
 
   const updateSection = (sectionId: string, content: Record<string, unknown>) => {
     setSections(prev => prev.map(section => 

@@ -1,12 +1,27 @@
 # kipo.design
 
-Modern portfolio website with a brutalist design system refined with utilitarian principles. Built with React, TypeScript, Tailwind CSS, and a custom CMS.
+Modern portfolio website with a brutalist design system refined with utilitarian principles. Built with React, TypeScript, Tailwind CSS, and a custom CMS with JSON backend.
+
+## ✨ Features
+
+- 🎨 Brutalist design system with utilitarian refinements
+- ✏️ Inline content editing
+- 📁 Project management with CRUD operations
+- 🖼️ Image upload and management
+- 💾 Server-side persistence (JSON files)
+- 🔄 Multi-user support
+- 📱 Fully responsive
+
+## 🚀 Quick Start
+
+See [QUICK-START.md](QUICK-START.md) for 5-minute setup.
 
 ## 📋 Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Development](#development)
+- [CMS Backend](#cms-backend)
 - [Design System](#design-system)
 - [Build & Deployment](#build--deployment)
 - [Git Workflow](#git-workflow)
@@ -47,7 +62,15 @@ cd kipo.design
 npm install
 ```
 
-### 3. Set up environment variables
+### 3. Install backend dependencies
+
+```bash
+cd backend
+npm install
+cd ..
+```
+
+### 4. Set up environment variables
 
 ```bash
 # Copy example file
@@ -61,16 +84,26 @@ nano .env  # or use your favorite editor
 
 ## 🚀 Development
 
-### Starting development server
+### Starting servers
 
+**Backend** (in one terminal):
+```bash
+cd backend
+npm start
+```
+
+Backend runs on `http://localhost:3001`
+
+**Frontend** (in another terminal):
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+Frontend runs on `http://localhost:5173`
 
 ### Available commands
 
+**Frontend**:
 ```bash
 # Development server with hot reload
 npm run dev
@@ -87,6 +120,43 @@ npm run lint
 # TypeScript type checking
 npx tsc --noEmit
 ```
+
+**Backend**:
+```bash
+# Start server
+npm start
+
+# Development with auto-reload
+npm run dev
+```
+
+---
+
+## 💾 CMS Backend
+
+The CMS uses a JSON file backend for data persistence.
+
+### Features
+- RESTful API with Express
+- JSON file storage for sections and projects
+- Image upload with file storage
+- CORS enabled for frontend
+- Multi-user support
+
+### API Endpoints
+- `GET /api/health` - Health check
+- `GET /api/sections` - Get all sections
+- `POST /api/sections` - Save sections
+- `GET /api/projects` - Get all projects
+- `POST /api/projects` - Create project
+- `PATCH /api/projects/:id` - Update project
+- `DELETE /api/projects/:id` - Delete project
+- `POST /api/upload` - Upload image
+
+### Documentation
+- **[backend/README.md](backend/README.md)** - Backend API documentation
+- **[DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)** - Deployment instructions
+- **[JSON-BACKEND-COMPLETE.md](JSON-BACKEND-COMPLETE.md)** - Implementation details
 
 ---
 
