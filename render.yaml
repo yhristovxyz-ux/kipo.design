@@ -4,7 +4,6 @@ services:
     name: kipo-backend
     env: node
     region: frankfurt
-    plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
     envVars:
@@ -20,7 +19,6 @@ services:
   - type: web
     name: kipo-frontend
     env: static
-    plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
