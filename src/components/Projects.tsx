@@ -5,6 +5,7 @@ import EditableText from './atoms/EditableText';
 import EditableImage from './atoms/EditableImage';
 import Tag from './atoms/Tag';
 import SectionWrapper from './cms/SectionWrapper';
+import { Card, CardContent, Badge } from '@/design-system';
 
 const Projects: React.FC = () => {
   const { sections, updateSection } = useCMS();
@@ -73,13 +74,14 @@ const Projects: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="projects">
-      <section id="work" className="py-24 bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-20">
+      <section id="work" className="brutalist-section bg-bg-primary ">
+        <div className="brutalist-container">
+          <div className="mb-16">
+          <div className="util-label mb-4">006-PROJECTS</div>
             <EditableText
               elementId="projects-headline"
               onUpdate={(value) => updateContent('headline', value)}
-              className="text-4xl md:text-5xl font-normal text-gray-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-text-primary mb-6"
               as="h2"
             >
               Featured Projects
@@ -87,7 +89,7 @@ const Projects: React.FC = () => {
             <EditableText
               elementId="projects-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-gray-600 max-w-2xl"
+              className="text-lg text-text-secondary max-w-2xl"
               as="p"
               multiline
             >
@@ -96,11 +98,11 @@ const Projects: React.FC = () => {
             </EditableText>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="brutalist-grid">
             {projects.map((project) => (
-              <div
+              <Card
                 key={project.id}
-                className="group bg-white border-2 border-gray-200 hover:border-gray-900 transition-all duration-200 overflow-hidden"
+                className="group overflow-hidden"
               >
                 <div className="relative overflow-hidden">
                   <EditableImage
@@ -114,12 +116,12 @@ const Projects: React.FC = () => {
                   />
                 </div>
 
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-4 font-mono text-xs text-gray-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-2 mb-4 font-mono text-xs text-text-tertiary">
                     <EditableText
                       elementId={`project-year-${project.id}`}
                       onUpdate={(value) => console.log('Update year:', value)}
-                      className="font-mono text-xs text-gray-500"
+                      className="font-mono text-xs text-text-tertiary"
                       as="span"
                     >
                       {project.year}
@@ -128,7 +130,7 @@ const Projects: React.FC = () => {
                     <EditableText
                       elementId={`project-client-${project.id}`}
                       onUpdate={(value) => console.log('Update client:', value)}
-                      className="font-mono text-xs text-gray-500"
+                      className="font-mono text-xs text-text-tertiary"
                       as="span"
                     >
                       {project.client}
@@ -138,7 +140,7 @@ const Projects: React.FC = () => {
                   <EditableText
                     elementId={`project-title-${project.id}`}
                     onUpdate={(value) => console.log('Update title:', value)}
-                    className="text-xl font-medium text-gray-900 mb-3"
+                    className="text-xl font-bold text-text-primary mb-3"
                     as="h3"
                   >
                     {project.title}
@@ -147,7 +149,7 @@ const Projects: React.FC = () => {
                   <EditableText
                     elementId={`project-description-${project.id}`}
                     onUpdate={(value) => console.log('Update description:', value)}
-                    className="text-gray-600 mb-4 leading-relaxed text-sm"
+                    className="text-text-secondary mb-4 leading-relaxed text-sm"
                     as="p"
                     multiline
                   >
@@ -156,25 +158,23 @@ const Projects: React.FC = () => {
 
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
-                      <Tag
+                      <Badge
                         key={index}
-                        variant="default"
-                        size="sm"
-                        editableId={`project-tag-${project.id}-${index}`}
+                        variant="secondary"
                       >
                         {tag}
-                      </Tag>
+                      </Badge>
                     ))}
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
           <div className="mt-12">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 font-medium hover:bg-gray-900 hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-2 border border-border-primary text-text-primary px-6 py-3 font-bold hover:bg-primary hover:text-inverse transition-all duration-200 rounded-brutalist uppercase tracking-wide text-sm"
             >
               View All Projects
               <ArrowRight className="w-4 h-4" />

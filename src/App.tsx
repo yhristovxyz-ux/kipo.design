@@ -14,6 +14,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AdminPanel from './components/admin/AdminPanel';
+import DesignSystemShowcase from './components/DesignSystemShowcase';
 
 function HomePage() {
   const { isEditMode } = useCMS();
@@ -42,6 +43,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/design-system" element={<DesignSystemShowcase />} />
           <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </Router>

@@ -4,6 +4,7 @@ import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
 import Icon from './atoms/Icon';
 import SectionWrapper from './cms/SectionWrapper';
+import { Card, CardContent } from '@/design-system';
 
 const Approach: React.FC = () => {
   const { sections, updateSection } = useCMS();
@@ -46,24 +47,25 @@ const Approach: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="approach">
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-indigo-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="brutalist-section bg-bg-secondary ">
+      <div className="brutalist-container">
         <div className="text-center mb-16">
+          <div className="util-label mb-4">005-APPROACH</div>
           <EditableText
             elementId="approach-headline"
             onUpdate={(value) => updateContent('headline', value)}
-            className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
+            className="text-3xl md:text-5xl font-bold text-text-primary mb-6"
             as="h2"
           >
             Design That Works Because It's
             <br />
-            <span className="text-indigo-600">Built On Understanding</span>
+            <span className="text-primary">Built On Understanding</span>
           </EditableText>
           
           <EditableText
             elementId="approach-description"
             onUpdate={(value) => updateContent('description', value)}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-text-secondary max-w-3xl mx-auto"
             as="p"
             multiline
           >
@@ -71,21 +73,18 @@ const Approach: React.FC = () => {
           </EditableText>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="brutalist-grid-divided grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {principles.map((principle, index) => (
-            <div
+            <Card
               key={index}
-              className="group relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-3 border border-gray-100 overflow-hidden"
+              className="group relative overflow-hidden border-0 rounded-none"
             >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full -translate-y-12 translate-x-12 opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              
-              <div className="relative z-10">
-                <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-200 transition-colors">
+              <CardContent className="p-8">
+                <div className="w-12 h-12 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center mb-6 group-hover:bg-primary group-hover:border-primary transition-colors">
                   <Icon
                     name={principle.icon.name || 'Users'}
                     size={24}
-                    className="text-indigo-600"
+                    className="text-text-primary group-hover:text-white transition-colors"
                     editableId={`approach-icon-${index}`}
                   />
                 </div>
@@ -97,7 +96,7 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], title: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-xl font-semibold text-gray-900 mb-4"
+                  className="text-xl font-bold text-text-primary mb-4"
                   as="h3"
                 >
                   {principle.title}
@@ -110,7 +109,7 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], description: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-gray-600 mb-6 leading-relaxed"
+                  className="text-text-secondary mb-6 leading-relaxed"
                   as="p"
                   multiline
                 >
@@ -124,13 +123,13 @@ const Approach: React.FC = () => {
                     newPrinciples[index] = { ...newPrinciples[index], stat: value };
                     updateContent('principles', newPrinciples);
                   }}
-                  className="text-sm font-semibold text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full inline-block"
+                  className="text-sm font-bold text-text-primary bg-bg-secondary px-4 py-2 rounded-brutalist inline-block border border-border-primary uppercase tracking-wide"
                   as="div"
                 >
                   {principle.stat}
                 </EditableText>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
