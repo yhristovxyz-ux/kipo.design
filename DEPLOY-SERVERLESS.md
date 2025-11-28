@@ -1,0 +1,410 @@
+# 🚀 Deploy Serverless to Vercel (100% FREE)
+
+Your backend has been converted to Vercel serverless functions. This is **100% FREE forever**!
+
+---
+
+## ✨ What Changed
+
+### Before (Express Server)
+- Required always-on server
+- Needed paid hosting
+- Manual scaling
+
+### After (Serverless Functions)
+- No server needed
+- 100% free on Vercel
+- Automatic scaling
+- Same API endpoints
+- Same functionality
+
+---
+
+## 📁 New Structure
+
+```
+api/
+├── lib/
+│   ├── storage.js      # Vercel Blob storage
+│   └── cors.js         # CORS helper
+├── health.js           # GET /api/health
+├── sections.js         # GET/POST /api/sections
+├── sections/
+│   └── [id].js         # PATCH /api/sections/:id
+├── projects.js         # GET/POST /api/projects
+├── projects/
+│   └── [id].js         # PATCH/DELETE /api/projects/:id
+└── upload.js           # POST /api/upload
+```
+
+---
+
+## 🚀 Deploy to Vercel (5 Minutes)
+
+### Step 1: Push to GitHub
+
+```bash
+# Already done! ✅
+```
+
+### Step 2: Deploy to Vercel
+
+#### Option A: Via Dashboard (Easiest)
+
+1. **Go to [vercel.com](https://vercel.com)**
+2. **Sign up/Login** with GitHub
+3. **Click "Add New..." → "Project"**
+4. **Import** `kipo.design` repository
+5. **Configure**:
+   - Framework Preset: **Vite**
+   - Root Directory: `./`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+6. **Environment Variables**:
+   - Click "Environment Variables"
+   - Add:
+     ```
+     VITE_USE_API=true
+     VITE_API_URL=/api
+     ```
+7. **Click "Deploy"**
+8. **Wait 2-3 minutes**
+9. **Done!** 🎉
+
+#### Option B: Via CLI
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login
+vercel login
+
+# Deploy
+vercel
+
+# Follow prompts:
+# - Set up and deploy? Yes
+# - Which scope? Your account
+# - Link to existing project? No
+# - Project name? kipo-design
+# - Directory? ./ (root)
+# - Override settings? No
+
+# Set environment variables
+vercel env add VITE_USE_API
+# Enter: true
+
+vercel env add VITE_API_URL
+# Enter: /api
+
+# Deploy to production
+vercel --prod
+```
+
+---
+
+## 🔧 Enable Vercel Blob Storage
+
+Vercel Blob is used for storing data and images. It's **FREE** (10 GB storage, 100 GB bandwidth).
+
+### Setup
+
+1. **Go to your project** on Vercel dashboard
+2. **Click "Storage" tab**
+3. **Click "Create Database"**
+4. **Select "Blob"**
+5. **Click "Create"**
+6. **Done!** Environment variables are automatically added
+
+That's it! Vercel automatically adds `BLOB_READ_WRITE_TOKEN` to your environment.
+
+---
+
+## ✅ Verify Deployment
+
+### Test Endpoints
+
+```bash
+# Replace with your Vercel URL
+VERCEL_URL="https://kipo-design.vercel.app"
+
+# Health check
+curl $VERCEL_URL/api/health
+
+# Should return:
+# {"status":"ok","timestamp":"...","environment":"serverless"}
+
+# Get sections
+curl $VERCEL_URL/api/sections
+
+# Get projects
+curl $VERCEL_URL/api/projects
+```
+
+### Test in Browser
+
+1. **Visit your Vercel URL**
+2. **Click "Edit" button**
+3. **Edit some text** - should save
+4. **Manage projects** - should work
+5. **Upload image** - should work
+6. **Refresh page** - changes persist!
+
+---
+
+## 🎯 What You Get (FREE)
+
+### Vercel Free Tier
+- ✅ 100 GB bandwidth/month
+- ✅ Unlimited API requests
+- ✅ Automatic HTTPS
+- ✅ Global CDN
+- ✅ Automatic deployments from Git
+- ✅ Preview deployments for PRs
+- ✅ No credit card required
+
+### Vercel Blob Storage (FREE)
+- ✅ 10 GB storage
+- ✅ 100 GB bandwidth/month
+- ✅ Automatic backups
+- ✅ Global replication
+
+### Total Cost
+**$0/month forever!** 🎉
+
+---
+
+## 📊 Limits & Upgrades
+
+### Free Tier Limits
+- **Bandwidth**: 100 GB/month (plenty for most sites)
+- **Function Execution**: 100 GB-hours/month
+- **Blob Storage**: 10 GB
+- **Blob Bandwidth**: 100 GB/month
+
+### When to Upgrade
+Only if you exceed free tier limits:
+- **Pro Plan**: $20/month
+  - 1 TB bandwidth
+  - 1000 GB-hours execution
+  - 100 GB blob storage
+
+For most portfolio sites, **free tier is more than enough**.
+
+---
+
+## 🔄 How It Works
+
+### Serverless Functions
+Each API endpoint is a separate function that:
+- Runs on-demand (no always-on server)
+- Scales automatically
+- Costs nothing when not in use
+- Responds in milliseconds
+
+### Vercel Blob Storage
+- Stores JSON data (sections, projects)
+- Stores uploaded images
+- Globally distributed
+- Automatic backups
+
+### Request Flow
+```
+User → Vercel CDN → Serverless Function → Blob Storage
+                  ↓
+              Response
+```
+
+---
+
+## 🛠️ Local Development
+
+### Run Locally
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Run dev server
+vercel dev
+```
+
+This runs both frontend and serverless functions locally.
+
+### Test API Locally
+
+```bash
+# Health check
+curl http://localhost:3000/api/health
+
+# Sections
+curl http://localhost:3000/api/sections
+
+# Projects
+curl http://localhost:3000/api/projects
+```
+
+---
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Set in Vercel dashboard or via CLI:
+
+```bash
+# Required (auto-set by Vercel Blob)
+BLOB_READ_WRITE_TOKEN=<auto-generated>
+
+# Optional (for CORS)
+ALLOWED_ORIGINS=https://your-domain.com,https://www.your-domain.com
+```
+
+### Custom Domain
+
+1. **Go to project settings**
+2. **Domains tab**
+3. **Add domain**
+4. **Follow DNS instructions**
+5. **Done!** Automatic HTTPS
+
+---
+
+## 📈 Monitoring
+
+### Vercel Dashboard
+
+View in real-time:
+- **Analytics**: Page views, visitors
+- **Functions**: Execution time, errors
+- **Logs**: Function logs
+- **Bandwidth**: Usage stats
+
+### Alerts
+
+Vercel automatically alerts you:
+- Deployment failures
+- Function errors
+- Bandwidth limits
+
+---
+
+## 🔒 Security
+
+### Built-in Security
+- ✅ Automatic HTTPS
+- ✅ DDoS protection
+- ✅ Rate limiting
+- ✅ Secure environment variables
+- ✅ Isolated function execution
+
+### CORS
+Already configured in `api/lib/cors.js`. Update `ALLOWED_ORIGINS` if needed.
+
+---
+
+## 🐛 Troubleshooting
+
+### Functions Not Working
+
+**Check logs**:
+1. Go to Vercel dashboard
+2. Select your project
+3. Click "Functions" tab
+4. View logs
+
+**Common issues**:
+- Missing environment variables
+- CORS errors
+- Blob storage not enabled
+
+### Images Not Uploading
+
+**Solution**:
+1. Ensure Blob storage is created
+2. Check `BLOB_READ_WRITE_TOKEN` exists
+3. View function logs for errors
+
+### Data Not Persisting
+
+**Solution**:
+1. Verify Blob storage is enabled
+2. Check function logs
+3. Test API endpoints directly
+
+---
+
+## 📦 Backup
+
+### Export Data
+
+```bash
+# Download sections
+curl https://your-app.vercel.app/api/sections > sections-backup.json
+
+# Download projects
+curl https://your-app.vercel.app/api/projects > projects-backup.json
+```
+
+### Automated Backup
+
+Add to `.github/workflows/backup.yml`:
+
+```yaml
+name: Daily Backup
+on:
+  schedule:
+    - cron: '0 2 * * *'
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Backup data
+        run: |
+          curl https://your-app.vercel.app/api/sections > sections.json
+          curl https://your-app.vercel.app/api/projects > projects.json
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: backup
+          path: '*.json'
+```
+
+---
+
+## 🎉 You're Done!
+
+Your site is now deployed on Vercel with:
+- ✅ Serverless backend
+- ✅ 100% FREE forever
+- ✅ Automatic scaling
+- ✅ Global CDN
+- ✅ Automatic HTTPS
+- ✅ No credit card needed
+
+### Next Steps
+
+1. ✅ Deploy to Vercel (done!)
+2. ⏳ Test all features
+3. ⏳ Add custom domain (optional)
+4. ⏳ Set up monitoring
+5. ⏳ Share with the world! 🌍
+
+---
+
+## 📞 Support
+
+### Vercel
+- **Docs**: https://vercel.com/docs
+- **Support**: https://vercel.com/support
+- **Community**: https://github.com/vercel/vercel/discussions
+
+### Issues
+- **GitHub**: https://github.com/yhristovxyz-ux/kipo.design/issues
+
+---
+
+**Congratulations!** 🎉
+
+You now have a fully functional, serverless portfolio site running 100% FREE on Vercel!

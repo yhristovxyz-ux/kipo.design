@@ -39,18 +39,18 @@ Your kipo.design project is **ready for deployment**. This guide will help you g
 
 For most users, we recommend:
 
-### Railway + Vercel
-- **Cost**: $5/month
-- **Time**: 10 minutes
-- **Difficulty**: Easy
-- **Guide**: [DEPLOY-NOW.md](DEPLOY-NOW.md)
+### Vercel Serverless (100% FREE)
+- **Cost**: FREE forever
+- **Time**: 5 minutes
+- **Difficulty**: Easiest
+- **Guide**: [DEPLOY-SERVERLESS.md](DEPLOY-SERVERLESS.md)
 
 **Why?**
-- Professional setup
-- Always-on (no spin-down)
-- Easy to manage
-- Automatic deployments
-- Good performance
+- 100% FREE forever
+- No credit card needed
+- Automatic scaling
+- Global CDN
+- Easiest setup
 
 ---
 
@@ -58,8 +58,9 @@ For most users, we recommend:
 
 | Guide | Platform | Cost | Time | Difficulty |
 |-------|----------|------|------|------------|
+| [DEPLOY-SERVERLESS.md](DEPLOY-SERVERLESS.md) | Vercel Serverless | FREE | 5 min | Easiest |
+| [DEPLOY-FREE.md](DEPLOY-FREE.md) | Railway/Others | FREE | 10 min | Easy |
 | [DEPLOY-NOW.md](DEPLOY-NOW.md) | Railway + Vercel | $5/mo | 10 min | Easy |
-| [DEPLOY-RENDER.md](DEPLOY-RENDER.md) | Render | Free/$7 | 5 min | Easiest |
 | [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) | All Options | Varies | Varies | Varies |
 
 ---
@@ -133,8 +134,8 @@ START-HERE.md (you are here)
 
 ## 🎉 Ready?
 
-**Click here to start**: [DEPLOY-NOW.md](DEPLOY-NOW.md)
+**Click here to start**: [DEPLOY-SERVERLESS.md](DEPLOY-SERVERLESS.md)
 
-Or choose your preferred option from the guides above.
+100% FREE deployment in 5 minutes!
 
 **Good luck!** 🚀
