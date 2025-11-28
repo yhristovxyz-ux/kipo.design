@@ -1,32 +1,15 @@
 services:
-  # Backend API
-  - type: web
-    name: kipo-backend
-    env: node
-    region: frankfurt
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 3001
-      - key: ALLOWED_ORIGINS
-        sync: false
-    healthCheckPath: /api/health
-    
-  # Frontend (Static Site)
+  # Frontend (Static Site) - FREE
   - type: web
     name: kipo-frontend
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    envVars:
-      - key: VITE_USE_API
-        value: true
-      - key: VITE_API_URL
-        sync: false
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
+
+# Note: Backend requires paid plan on Render ($7/month)
+# For free deployment, use Railway instead (see DEPLOY-NOW.md)
+# Or deploy backend to Vercel as serverless functions
