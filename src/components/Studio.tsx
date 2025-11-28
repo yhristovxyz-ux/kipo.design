@@ -16,25 +16,24 @@ const Studio: React.FC = () => {
   
   if (!section) return null;
 
-  const { content } = section;
-
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: unknown) => {
     updateSection('studio', { [field]: value });
   };
 
-  const updateStudioContent = (index: number, config: any) => {
+  const updateStudioContent = (index: number, config: Record<string, unknown>) => {
     const newContent = [...studioContent];
+    const IconComponent = (LucideIcons as Record<string, React.ComponentType>)[config.icon as string] || Target;
     newContent[index] = {
       ...newContent[index],
-      title: config.title,
-      description: config.description,
+      title: config.title as string,
+      description: config.description as string,
       media: {
-        type: config.mediaType,
-        url: config.mediaUrl,
-        alt: config.title
+        type: config.mediaType as 'image' | 'video',
+        url: config.mediaUrl as string,
+        alt: config.title as string
       },
-      icon: (LucideIcons as any)[config.icon] || Target,
-      stats: config.stats
+      icon: IconComponent,
+      stats: config.stats as Array<{ label: string; value: string }>
     };
     // Update the content in CMS context
     updateContent('studioContent', newContent);
@@ -128,87 +127,79 @@ const Studio: React.FC = () => {
           </EditableText>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Interactive Content List */}
-          <div className="space-y-4">
-            {studioContent.map((content, index) => (
-              <div
-                key={content.id}
-                onClick={() => handleContentClick(index)}
-                className={`group cursor-pointer p-6 rounded-brutalist transition-all duration-300 relative ${
-                  activeContent === index
-                    ? 'bg-bg-primary border border-primary'
-                    : 'bg-bg-primary hover:bg-bg-secondary border border-border-primary'
-                }`}
-              >
-                {isEditMode && (
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-brutalist flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-border-primary">
-                    <span className="text-white text-xs">✎</span>
-                  </div>
-                )}
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-brutalist flex items-center justify-center transition-colors border ${
+        <div className="border border-border-primary">
+          <div className="grid lg:grid-cols-2">
+            {/* Interactive Content List */}
+            <div className="border-r border-border-primary">
+              {studioContent.map((content, index) => (
+                <div
+                  key={content.id}
+                  onClick={() => handleContentClick(index)}
+                  className={`group cursor-pointer p-8 transition-all duration-300 relative border-b border-border-primary last:border-b-0 ${
                     activeContent === index
-                      ? 'bg-primary text-white border-primary'
-                      : 'bg-bg-primary text-text-primary border-border-primary group-hover:bg-bg-secondary'
-                  }`}>
-                    <content.icon className="w-6 h-6" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className={`text-lg font-bold transition-colors ${
-                        activeContent === index ? 'text-primary' : 'text-text-primary'
-                      }`}>
-                        {content.title}
-                      </h3>
-                      <span className="text-sm font-bold text-text-primary bg-bg-secondary px-3 py-1 rounded-brutalist border border-border-primary uppercase tracking-wide">
-                        {content.stats}
-                      </span>
+                      ? 'bg-bg-primary'
+                      : 'bg-bg-secondary hover:bg-bg-primary'
+                  }`}
+                >
+                  {isEditMode && (
+                    <div className="absolute top-4 right-4 w-6 h-6 bg-primary rounded-brutalist flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border border-border-primary">
+                      <span className="text-white text-xs">✎</span>
+                    </div>
+                  )}
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 rounded-brutalist flex items-center justify-center transition-colors border flex-shrink-0 ${
+                      activeContent === index
+                        ? 'bg-primary text-white border-primary'
+                        : 'bg-bg-primary text-text-primary border-border-primary'
+                    }`}>
+                      <content.icon className="w-6 h-6" />
                     </div>
                     
-                    <p className={`text-text-secondary leading-relaxed transition-all duration-300 ${
-                      activeContent === index ? 'opacity-100' : 'opacity-70'
-                    }`}>
-                      {content.description}
-                    </p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-4 mb-2">
+                        <h3 className={`text-lg font-bold transition-colors ${
+                          activeContent === index ? 'text-primary' : 'text-text-primary'
+                        }`}>
+                          {content.title}
+                        </h3>
+                        <span className="text-xs font-bold text-text-primary bg-bg-secondary px-2 py-1 rounded-brutalist border border-border-primary uppercase tracking-wide whitespace-nowrap">
+                          {content.stats}
+                        </span>
+                      </div>
+                      
+                      <p className={`text-sm text-text-secondary leading-relaxed transition-all duration-300 ${
+                        activeContent === index ? 'opacity-100' : 'opacity-70'
+                      }`}>
+                        {content.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* Media Display */}
-          <div className="relative">
-            <div className="aspect-square bg-bg-secondary border border-border-primary rounded-brutalist-sm overflow-hidden">
-              <div className="relative w-full h-full">
-                <EditableImage
-                  src={studioContent[activeContent].media.url}
-                  alt={studioContent[activeContent].media.alt}
-                  elementId={`studio-media-${activeContent}`}
-                  onUpdate={(newSrc, newAlt) => {
-                    // Update the media content
-                    console.log('Update studio media:', newSrc, newAlt);
-                  }}
-                  className="w-full h-full object-cover transition-all duration-500"
-                />
-                
-                {/* Video Play Overlay */}
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-16 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center">
-                    <Play className="w-8 h-8 text-primary ml-1" />
+            {/* Media Display */}
+            <div className="bg-bg-secondary">
+              <div className="aspect-square w-full overflow-hidden">
+                <div className="relative w-full h-full">
+                  <EditableImage
+                    src={studioContent[activeContent].media.url}
+                    alt={studioContent[activeContent].media.alt}
+                    elementId={`studio-media-${activeContent}`}
+                    onUpdate={(newSrc, newAlt) => {
+                      console.log('Update studio media:', newSrc, newAlt);
+                    }}
+                    className="w-full h-full object-cover transition-all duration-500"
+                  />
+                  
+                  {/* Video Play Overlay */}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center">
+                      <Play className="w-8 h-8 text-primary ml-1" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-8 -right-8 w-16 h-16 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center animate-float">
-              <div className="w-8 h-8 bg-primary rounded-brutalist"></div>
-            </div>
-            
-            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
-              <div className="w-10 h-10 bg-primary rounded-brutalist"></div>
             </div>
           </div>
         </div>

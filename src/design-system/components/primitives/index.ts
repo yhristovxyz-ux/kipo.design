@@ -52,3 +52,7 @@ export type { IconBoxProps } from './IconBox';
 // ContactInfo
 export { ContactInfo } from './ContactInfo';
 export type { ContactInfoProps } from './ContactInfo';
+
+// Isocon
+export { Isocon } from './Isocon';
+export type { IsoconProps } from './Isocon';

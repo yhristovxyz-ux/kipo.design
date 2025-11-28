@@ -12,14 +12,16 @@ Complete design system documentation for kipo.design - A brutalist design system
 
 1. [Overview](#overview)
 2. [Design Philosophy](#design-philosophy)
-3. [Color System](#color-system)
-4. [Typography](#typography)
-5. [Spacing](#spacing)
-6. [Border System](#border-system)
-7. [Components](#components)
-8. [Utilities](#utilities)
-9. [Usage Examples](#usage-examples)
-10. [Migration Guide](#migration-guide)
+3. [Layout System](#layout-system)
+4. [Color System](#color-system)
+5. [Typography](#typography)
+6. [Spacing](#spacing)
+7. [Border System](#border-system)
+8. [Icon System](#icon-system)
+9. [Components](#components)
+10. [Utilities](#utilities)
+11. [Usage Examples](#usage-examples)
+12. [Migration Guide](#migration-guide)
 
 ---
 
@@ -58,6 +60,99 @@ The Kipo Design System combines **brutalist** structure with **utilitarian** ref
 - Two-tier radius system for visual hierarchy
 - High contrast text for readability
 - Semantic color system for consistency
+
+---
+
+## Layout System
+
+### Containment Rules
+
+The layout system follows strict containment principles to create clear visual boundaries and hierarchy.
+
+#### Core Principles
+
+1. **Border Containment** - All major sections use borders to define boundaries
+2. **No Floating Elements** - Avoid decorative elements that float outside containers
+3. **Connected Components** - Related elements share borders rather than having gaps
+4. **Grid-Based Division** - Use CSS Grid with border divisions for multi-column layouts
+
+#### Section Patterns
+
+**Full-Width Sections**
+```tsx
+<section className="brutalist-section bg-bg-primary">
+  <div className="brutalist-container">
+    {/* Content */}
+  </div>
+</section>
+```
+
+**Bordered Container Pattern**
+```tsx
+<div className="border border-border-primary">
+  <div className="grid lg:grid-cols-2">
+    <div className="border-r border-border-primary p-8">
+      {/* Left content */}
+    </div>
+    <div className="p-8">
+      {/* Right content */}
+    </div>
+  </div>
+</div>
+```
+
+**Divided Grid Pattern**
+```tsx
+<div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4">
+  <div className="bg-bg-primary p-8">{/* Item 1 */}</div>
+  <div className="bg-bg-primary p-8">{/* Item 2 */}</div>
+  <div className="bg-bg-primary p-8">{/* Item 3 */}</div>
+  <div className="bg-bg-primary p-8">{/* Item 4 */}</div>
+</div>
+```
+
+**Vertical Stack with Borders**
+```tsx
+<div className="border border-border-primary">
+  {items.map((item, index) => (
+    <div 
+      key={index}
+      className="p-8 border-b border-border-primary last:border-b-0"
+    >
+      {/* Item content */}
+    </div>
+  ))}
+</div>
+```
+
+#### Layout Anti-Patterns
+
+❌ **Avoid:**
+- Floating decorative elements outside containers
+- Gaps between related components
+- Rounded containers with shadows
+- Overlapping elements
+- Arbitrary spacing between sections
+
+✅ **Use Instead:**
+- Contained elements within borders
+- Shared borders between components
+- Sharp edges with subtle borders
+- Adjacent placement with dividers
+- Consistent grid-based spacing
+
+#### Responsive Behavior
+
+- Mobile: Single column, full-width borders
+- Tablet: 2-column grids with vertical dividers
+- Desktop: Multi-column grids with both vertical and horizontal dividers
+
+#### Examples in Practice
+
+**Services Section**: Grid of cards with top borders only
+**Studio Section**: Two-column grid with shared vertical border
+**Contact Section**: Centered content with side-by-side form and info
+**Stats Section**: Four-column grid with dividers between each stat
 
 ---
 
@@ -137,6 +232,26 @@ The color system has three tiers:
 --color-border-subtle: #f4f4f5     /* Zinc-100 */
 --color-border-strong: #a1a1aa     /* Zinc-400 */
 ```
+
+#### Icon Colors
+
+Icons use the gray scale for a cohesive, professional appearance:
+
+```css
+/* Icon fills */
+--color-icon-fill-primary: #71717a    /* Zinc-500 */
+--color-icon-fill-secondary: #52525b  /* Zinc-600 */
+
+/* Icon strokes */
+--color-icon-stroke-primary: #a1a1aa  /* Zinc-400 */
+--color-icon-stroke-secondary: #52525b /* Zinc-600 */
+```
+
+**Usage Guidelines:**
+- Use zinc-500 for primary icon fills
+- Use zinc-400 for stroke outlines
+- Maintain consistent colors across all icons
+- Avoid using accent colors in icons (use gray scale only)
 
 ### Context Tokens
 
@@ -285,6 +400,26 @@ All tokens are available as Tailwind classes:
 --space-section: 6rem  /* 96px - consistent vertical spacing */
 ```
 
+### Spacing Guidelines
+
+**Container Padding:**
+- Desktop: `px-8` (32px) or `px-12` (48px)
+- Mobile: `px-4` (16px) or `px-6` (24px)
+
+**Section Margins:**
+- Between sections: `mb-16` (64px) or `mb-20` (80px)
+- Within sections: `mb-8` (32px) or `mb-12` (48px)
+
+**Component Spacing:**
+- Card padding: `p-6` (24px) or `p-8` (32px)
+- Button padding: `px-6 py-3` (24px × 12px)
+- Input padding: `px-4 py-3` (16px × 12px)
+
+**Grid Gaps:**
+- Large grids: `gap-8` (32px) or `gap-12` (48px)
+- Small grids: `gap-4` (16px) or `gap-6` (24px)
+```
+
 ---
 
 ## Border System
@@ -340,6 +475,108 @@ Used for: Buttons, inputs, badges, chips, small interactive components
 ### Border Colors
 
 See [Color System](#color-system) for border color tokens.
+
+---
+
+## Icon System
+
+### Isocons - Isometric Icon Library
+
+The design system uses **Isocons** - a library of isometric 3D icons that provide visual depth while maintaining the brutalist aesthetic.
+
+#### Style Characteristics
+
+1. **Isometric Perspective** - 3D appearance with consistent 45° angles
+2. **Monochromatic** - Single color fills with stroke outlines
+3. **Geometric** - Clean lines and sharp angles
+4. **Scalable** - SVG-based for any size without quality loss
+
+#### Color Palette
+
+All icons use the gray color scheme from the design system:
+
+```css
+/* Fill colors */
+--icon-fill-primary: #71717a    /* zinc-500 */
+--icon-fill-secondary: #52525b  /* zinc-600 */
+
+/* Stroke colors */
+--icon-stroke-primary: #a1a1aa  /* zinc-400 */
+--icon-stroke-secondary: #52525b /* zinc-600 */
+```
+
+#### Standard Sizes
+
+```tsx
+// Small - UI elements
+<Isocon name="code" size={64} />
+
+// Medium - Cards and features
+<Isocon name="palette" size={128} />
+
+// Large - Hero sections and showcases
+<Isocon name="layers" size={192} />
+```
+
+#### Available Icons
+
+Current icon library includes:
+
+- **messagecircle** - Communication, chat, messaging
+- **lightbulb** - Ideas, innovation, creativity
+- **layers** - Design systems, structure, organization
+- **code** - Web development, programming, technical
+- **palette** - UX/UI design, visual design, creativity
+
+#### Adding New Icons
+
+When adding new Isocons:
+
+1. **Source**: Use icons from [isocons.app](https://isocons.app)
+2. **Color Conversion**: Replace all blue colors with gray palette
+   - `#229EFF` → `#71717a` (fill)
+   - `#229EFF` → `#52525b` (stroke)
+   - `white` → `#a1a1aa` (stroke on filled backgrounds)
+3. **Size**: Maintain original viewBox proportions
+4. **Animation**: Icons include subtle glow animation on hover
+
+#### Implementation Example
+
+```tsx
+import { Isocon } from '@/design-system/components/primitives/Isocon';
+
+// In a service card
+<div className="w-full h-64 mb-6 flex items-center justify-center">
+  <Isocon name="code" size={192} />
+</div>
+```
+
+#### Icon Naming Convention
+
+- Use lowercase names
+- Match the original Isocon name when possible
+- Use descriptive names for custom icons
+- Remove special characters and spaces
+
+#### Animation
+
+Icons include a built-in subtle animation:
+
+```css
+@keyframes isocon-glow {
+  0%, 100% { 
+    filter: brightness(1);
+  }
+  50% { 
+    filter: brightness(1.3) drop-shadow(0 0 2px rgba(113, 113, 122, 0.5));
+  }
+}
+```
+
+- Duration: 8 seconds
+- Easing: ease-in-out
+- Staggered delays for multiple paths
+- Faster on hover (4 seconds)
 
 ---
 
@@ -410,6 +647,165 @@ import { Input } from '@/design-system/components/primitives/Input';
 
 **Variants:** default, primary, secondary, success, error, warning, info, outline  
 **Sizes:** sm, md, lg
+
+---
+
+## Component Patterns
+
+### Service Card Pattern
+
+Used for displaying services with icons, titles, descriptions, and features.
+
+```tsx
+<div className="bg-bg-primary p-8 border-t border-border-primary">
+  {/* Icon container */}
+  <div className="w-full h-64 mb-6 flex items-center justify-center">
+    <Isocon name="code" size={192} />
+  </div>
+  
+  {/* Title */}
+  <h3 className="text-xl font-bold text-text-primary mb-3">
+    Service Title
+  </h3>
+  
+  {/* Description */}
+  <p className="text-sm text-text-secondary mb-4">
+    Service description text
+  </p>
+  
+  {/* Features list */}
+  <ul className="space-y-2">
+    {features.map((feature, idx) => (
+      <li key={idx} className="flex items-start text-xs text-text-tertiary">
+        <span className="mr-2 mt-1 w-1 h-1 bg-primary rounded-full flex-shrink-0"></span>
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+```
+
+### Two-Column Split Pattern
+
+Used for content with image or media on one side.
+
+```tsx
+<div className="border border-border-primary">
+  <div className="grid lg:grid-cols-2">
+    {/* Left content */}
+    <div className="border-r border-border-primary">
+      {items.map((item, index) => (
+        <div 
+          key={index}
+          className="p-8 border-b border-border-primary last:border-b-0 bg-bg-secondary hover:bg-bg-primary"
+        >
+          {/* Item content */}
+        </div>
+      ))}
+    </div>
+    
+    {/* Right media */}
+    <div className="bg-bg-secondary">
+      <div className="aspect-square w-full overflow-hidden">
+        <img src={mediaUrl} className="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### Stats Grid Pattern
+
+Used for displaying metrics and statistics.
+
+```tsx
+<div className="brutalist-grid-divided grid-cols-2 md:grid-cols-4">
+  {stats.map((stat, index) => (
+    <div key={index} className="text-center bg-bg-primary p-8">
+      <div className="text-3xl md:text-4xl font-bold text-text-primary">
+        {stat.value}
+      </div>
+      <div className="text-text-secondary mt-2 text-sm font-bold uppercase tracking-wide">
+        {stat.label}
+      </div>
+    </div>
+  ))}
+</div>
+```
+
+### Contact Form Pattern
+
+Used for forms with side-by-side layout.
+
+```tsx
+<div className="grid lg:grid-cols-3 gap-8">
+  {/* Form - 2 columns */}
+  <div className="lg:col-span-2">
+    <Card>
+      <CardContent className="p-8">
+        <form className="space-y-6">
+          {/* Form fields */}
+        </form>
+      </CardContent>
+    </Card>
+  </div>
+  
+  {/* Sidebar - 1 column */}
+  <div className="space-y-6">
+    <Card>
+      <CardContent className="p-8">
+        {/* Contact info */}
+      </CardContent>
+    </Card>
+    
+    {/* CTA card with stripes */}
+    <Card className="bg-text-primary border-text-primary diagonal-stripes overflow-hidden">
+      <CardContent className="p-8">
+        <h3 className="text-xl font-bold mb-4 text-bg-primary">
+          Free Consultation
+        </h3>
+        <p className="text-zinc-300 mb-6 text-sm">
+          Description text
+        </p>
+        <Button className="w-full">
+          Book a Call
+        </Button>
+      </CardContent>
+    </Card>
+  </div>
+</div>
+```
+
+### Hero Section Pattern
+
+Used for main landing sections with centered content.
+
+```tsx
+<section className="brutalist-section bg-bg-primary">
+  <div className="brutalist-container">
+    <div className="text-center max-w-4xl mx-auto">
+      {/* Label */}
+      <div className="util-label mb-4">001-HERO</div>
+      
+      {/* Headline */}
+      <h1 className="text-4xl md:text-6xl font-bold text-text-primary mb-6">
+        Main Headline
+      </h1>
+      
+      {/* Description */}
+      <p className="text-xl text-text-secondary mb-8">
+        Supporting description text
+      </p>
+      
+      {/* CTA buttons */}
+      <div className="flex gap-4 justify-center">
+        <Button variant="primary" size="lg">Primary Action</Button>
+        <Button variant="secondary" size="lg">Secondary Action</Button>
+      </div>
+    </div>
+  </div>
+</section>
+```
 
 ```tsx
 import { Badge } from '@/design-system/components/primitives/Badge';
@@ -753,12 +1149,53 @@ All existing code continues to work. These are additive refinements.
 
 ---
 
+## Quick Reference
+
+### Layout Checklist
+
+When creating new sections:
+
+- ✅ Use border containment (no floating elements)
+- ✅ Connect related components with shared borders
+- ✅ Use grid-based layouts with border divisions
+- ✅ Apply consistent padding (p-8 for cards, p-6 for smaller items)
+- ✅ Center headlines with `text-center` and `mx-auto`
+- ✅ Use `brutalist-container` for max-width containment
+
+### Color Checklist
+
+- ✅ Use gray scale for icons (zinc-400, zinc-500, zinc-600)
+- ✅ Use electric blue (#0066FF) for primary actions only
+- ✅ Use paper backgrounds (bg-bg-primary, bg-bg-secondary)
+- ✅ Use muted borders (border-border-primary)
+- ✅ Maintain high contrast for text (text-text-primary)
+
+### Icon Checklist
+
+- ✅ Use Isocons from isocons.app
+- ✅ Convert all colors to gray scale
+- ✅ Size: 64px (small), 128px (medium), 192px (large)
+- ✅ Include subtle glow animation
+- ✅ Use lowercase names without special characters
+
+### Component Checklist
+
+- ✅ Cards: 1px border radius, paper background
+- ✅ Buttons: 6px border radius, bold uppercase text
+- ✅ Inputs: 6px border radius, consistent height
+- ✅ Grids: Use `brutalist-grid-divided` for stats
+- ✅ Forms: 2-column layout with sidebar
+
+---
+
 ## Resources
 
 - **Design System Showcase**: `/design-system` route
 - **Component Library**: `src/design-system/components/`
 - **Tokens**: `src/index.css`
 - **Tailwind Config**: `tailwind.config.js`
+- **Icon Library**: `src/design-system/components/primitives/Isocon/`
+- **Isocons Source**: [isocons.app](https://isocons.app)
 
 ---
 

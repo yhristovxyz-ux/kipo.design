@@ -81,7 +81,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     return (
       <Component
         ref={ref}
-        className={cn(headingVariants({ level: level || (as as any) }), className)}
+        className={cn(headingVariants({ level: level || (as as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') }), className)}
         {...props}
       />
     );
@@ -99,7 +99,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
     
     return (
       <Component
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLElement>}
         className={cn(textVariants({ size, weight }), className)}
         {...props}
       />

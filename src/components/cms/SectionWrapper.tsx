@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Settings, Copy, Trash2, Eye, EyeOff, ChevronUp, ChevronDown } from 'lucide-react';
+import { Settings, Copy, Eye, EyeOff, ChevronUp, ChevronDown } from 'lucide-react';
 import { useCMS } from '../../contexts/CMSContext';
 
 interface SectionWrapperProps {

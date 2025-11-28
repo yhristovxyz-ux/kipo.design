@@ -14,6 +14,11 @@ import EditableText from '../atoms/EditableText';
 import EditableButton from '../atoms/EditableButton';
 import SectionWrapper from '../cms/SectionWrapper';
 
+interface StatItem {
+  value: string;
+  label: string;
+}
+
 const HeroSection: React.FC = () => {
   const { sections, updateSection } = useCMS();
   const section = sections.find(s => s.id === 'hero');
@@ -22,7 +27,7 @@ const HeroSection: React.FC = () => {
 
   const { content } = section;
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: unknown) => {
     updateSection('hero', { [field]: value });
   };
 
@@ -92,7 +97,7 @@ const HeroSection: React.FC = () => {
             <div className="mt-24">
               <div className="border-l border-r border-border-primary">
                 <div className="grid grid-cols-3 gap-px brutalist-hatch">
-                  {content.stats?.map((stat: any, index: number) => (
+                  {(content.stats as StatItem[] | undefined)?.map((stat, index) => (
                     <div key={index} className="bg-bg-primary p-8">
                       <Stat value={stat.value} label={stat.label} />
                     </div>

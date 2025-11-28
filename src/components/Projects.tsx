@@ -2,16 +2,13 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
-import EditableImage from './atoms/EditableImage';
-import Tag from './atoms/Tag';
 import SectionWrapper from './cms/SectionWrapper';
-import { Card, CardContent, Badge } from '@/design-system';
+import { ProjectCard } from '@/design-system';
 
 const Projects: React.FC = () => {
-  const { sections, updateSection } = useCMS();
-  const section = sections.find(s => s.id === 'projects');
+  const { updateSection } = useCMS();
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('projects', { [field]: value });
   };
 
@@ -98,77 +95,13 @@ const Projects: React.FC = () => {
             </EditableText>
           </div>
 
-          <div className="brutalist-grid">
-            {projects.map((project) => (
-              <Card
-                key={project.id}
-                className="group overflow-hidden"
-              >
-                <div className="relative overflow-hidden">
-                  <EditableImage
-                    src={project.image}
-                    alt={project.title}
-                    elementId={`project-image-${project.id}`}
-                    onUpdate={(newSrc, newAlt) => {
-                      console.log('Update project image:', newSrc, newAlt);
-                    }}
-                    className="w-full h-56 object-cover"
-                  />
-                </div>
-
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 mb-4 font-mono text-xs text-text-tertiary">
-                    <EditableText
-                      elementId={`project-year-${project.id}`}
-                      onUpdate={(value) => console.log('Update year:', value)}
-                      className="font-mono text-xs text-text-tertiary"
-                      as="span"
-                    >
-                      {project.year}
-                    </EditableText>
-                    <span>•</span>
-                    <EditableText
-                      elementId={`project-client-${project.id}`}
-                      onUpdate={(value) => console.log('Update client:', value)}
-                      className="font-mono text-xs text-text-tertiary"
-                      as="span"
-                    >
-                      {project.client}
-                    </EditableText>
-                  </div>
-
-                  <EditableText
-                    elementId={`project-title-${project.id}`}
-                    onUpdate={(value) => console.log('Update title:', value)}
-                    className="text-xl font-bold text-text-primary mb-3"
-                    as="h3"
-                  >
-                    {project.title}
-                  </EditableText>
-
-                  <EditableText
-                    elementId={`project-description-${project.id}`}
-                    onUpdate={(value) => console.log('Update description:', value)}
-                    className="text-text-secondary mb-4 leading-relaxed text-sm"
-                    as="p"
-                    multiline
-                  >
-                    {project.description}
-                  </EditableText>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                      <Badge
-                        key={index}
-                        variant="secondary"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Full-width contained grid - matches Services section */}
+          <div className="border-l border-r border-border-primary">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px brutalist-hatch">
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
           </div>
 
           <div className="mt-12">

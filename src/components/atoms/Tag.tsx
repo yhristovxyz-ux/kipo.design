@@ -13,16 +13,13 @@ interface TagProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   editableId?: string;
-  onEdit?: (newText: string) => void;
 }
 
 const Tag: React.FC<TagProps> = ({
   children,
   variant = 'default',
-  size = 'md',
   className = '',
-  editableId,
-  onEdit
+  editableId
 }) => {
   const { isEditMode, selectedElement, setSelectedElement } = useCMS();
   

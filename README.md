@@ -114,9 +114,8 @@ This project uses a **brutalist design system** refined with **utilitarian princ
 - Layout (Container, Section)
 
 ### Documentation
-- **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Complete design system guide
-- **[BRUTALIST-UTILITARIAN-UPDATE.md](BRUTALIST-UTILITARIAN-UPDATE.md)** - Latest refinements (v1.1)
-- **[BORDER_RADIUS_GUIDE.md](BORDER_RADIUS_GUIDE.md)** - Two-tier radius system
+- **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Complete design system guide (v1.1)
+- **[CHANGELOG-v1.1.md](CHANGELOG-v1.1.md)** - Latest refinements and changes
 - **Design System Showcase** - Available at `/design-system` route
 
 ### Quick Example
@@ -205,30 +204,22 @@ git merge dev
 
 1. **README.md** (this file) - Project overview and quick start
 2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture and structure
-3. **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Design tokens and components
+3. **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Design system guide
 4. **[docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Coding standards
 5. **[docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md)** - AI development patterns
 
-### Design System Documentation
+### Core Documentation
 
 - **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Complete design system guide (v1.1)
-- **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Original design docs (reference)
-
-### Development Guides
-
 - **[docs/WORKFLOW.md](docs/WORKFLOW.md)** - Git workflow and processes
 - **[docs/GIT-GUIDE.md](docs/GIT-GUIDE.md)** - Quick Git reference
 - **[docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Standards and patterns
-
-### AI Development
-
 - **[docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md)** - AI-specific development patterns
 - **[docs/AI-DEVELOPMENT-PLAN.md](docs/AI-DEVELOPMENT-PLAN.md)** - AI development strategy
 
-### Project Status
+### Version History
 
-- **[AI-DEVELOPMENT-COMPLETE.md](AI-DEVELOPMENT-COMPLETE.md)** - Completed milestones
-- **[SETUP-COMPLETE.md](SETUP-COMPLETE.md)** - Setup checklist
+- **[CHANGELOG-v1.1.md](CHANGELOG-v1.1.md)** - Design system v1.1 changes
 
 ---
 

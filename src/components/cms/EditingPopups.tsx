@@ -105,7 +105,7 @@ const IconSelector: React.FC<{
         <div className="p-4 overflow-y-auto max-h-96">
           <div className="grid grid-cols-8 gap-2">
             {iconNames.map((iconName) => {
-              const IconComponent = (LucideIcons as any)[iconName];
+              const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconName];
               return (
                 <button
                   key={iconName}
@@ -196,7 +196,7 @@ export const ButtonEditPopup: React.FC<ButtonEditPopupProps> = ({
               </label>
               <select
                 value={config.variant}
-                onChange={(e) => setConfig({ ...config, variant: e.target.value as any })}
+                onChange={(e) => setConfig({ ...config, variant: e.target.value as 'primary' | 'secondary' | 'outline' })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="primary">Primary</option>
@@ -272,7 +272,7 @@ export const ButtonEditPopup: React.FC<ButtonEditPopupProps> = ({
                 >
                   {config.icon ? (
                     <div className="flex items-center gap-2">
-                      {React.createElement((LucideIcons as any)[config.icon], { className: "w-4 h-4" })}
+                      {React.createElement((LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[config.icon], { className: "w-4 h-4" })}
                       <span>{config.icon}</span>
                     </div>
                   ) : (
@@ -296,7 +296,7 @@ export const ButtonEditPopup: React.FC<ButtonEditPopupProps> = ({
                   </label>
                   <select
                     value={config.iconPosition}
-                    onChange={(e) => setConfig({ ...config, iconPosition: e.target.value as any })}
+                    onChange={(e) => setConfig({ ...config, iconPosition: e.target.value as 'left' | 'right' })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="left">Left</option>
@@ -397,7 +397,7 @@ export const ServiceCardEditPopup: React.FC<ServiceCardEditPopupProps> = ({
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-left"
                 >
                   <div className="flex items-center gap-2">
-                    {React.createElement((LucideIcons as any)[config.icon], { className: "w-4 h-4" })}
+                    {React.createElement((LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[config.icon], { className: "w-4 h-4" })}
                     <span>{config.icon}</span>
                   </div>
                 </button>
@@ -584,7 +584,7 @@ export const ProcessStepEditPopup: React.FC<ProcessStepEditPopupProps> = ({
                 className="w-full px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-left"
               >
                 <div className="flex items-center gap-2">
-                  {React.createElement((LucideIcons as any)[config.icon], { className: "w-4 h-4" })}
+                  {React.createElement((LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[config.icon], { className: "w-4 h-4" })}
                   <span>{config.icon}</span>
                 </div>
               </button>
@@ -775,7 +775,7 @@ export const StudioContentEditPopup: React.FC<StudioContentEditPopupProps> = ({
                 className="w-full px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-left"
               >
                 <div className="flex items-center gap-2">
-                  {React.createElement((LucideIcons as any)[config.icon], { className: "w-4 h-4" })}
+                  {React.createElement((LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[config.icon], { className: "w-4 h-4" })}
                   <span>{config.icon}</span>
                 </div>
               </button>
@@ -800,7 +800,7 @@ export const StudioContentEditPopup: React.FC<StudioContentEditPopupProps> = ({
               </label>
               <select
                 value={config.mediaType}
-                onChange={(e) => setConfig({ ...config, mediaType: e.target.value as any })}
+                onChange={(e) => setConfig({ ...config, mediaType: e.target.value as 'image' | 'video' })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="image">Image</option>

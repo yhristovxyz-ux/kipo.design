@@ -1,8 +1,39 @@
 import React from 'react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
-import EditableServiceCard from './atoms/EditableServiceCard';
 import SectionWrapper from './cms/SectionWrapper';
+import { ServiceCard } from '@/design-system';
+
+const defaultServices = [
+  {
+    icon: { name: 'Palette' },
+    title: 'UX/UI Design',
+    description: 'User-centered design that combines beautiful aesthetics with intuitive functionality.',
+    features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design'],
+    color: 'bg-blue-50 text-blue-600'
+  },
+  {
+    icon: { name: 'Code' },
+    title: 'Web Design & Development',
+    description: 'Modern, responsive websites built with the latest technologies and best practices.',
+    features: ['Responsive Design', 'Performance Optimization', 'SEO Integration', 'CMS Development'],
+    color: 'bg-green-50 text-green-600'
+  },
+  {
+    icon: { name: 'Layers' },
+    title: 'Design Systems',
+    description: 'Scalable design systems that maintain consistency across all your digital products.',
+    features: ['Component Libraries', 'Style Guides', 'Documentation', 'Token Management'],
+    color: 'bg-purple-50 text-purple-600'
+  },
+  {
+    icon: { name: 'Smartphone' },
+    title: 'Product Design',
+    description: 'End-to-end product design from concept to launch, focused on user needs and business goals.',
+    features: ['Product Strategy', 'User Testing', 'Conversion Optimization', 'Launch Support'],
+    color: 'bg-orange-50 text-orange-600'
+  }
+];
 
 const Services: React.FC = () => {
   const { sections, updateSection } = useCMS();
@@ -12,52 +43,21 @@ const Services: React.FC = () => {
 
   const { content } = section;
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('services', { [field]: value });
   };
 
-  const updateService = (index: number, config: any) => {
+  const handleServiceUpdate = (index: number, field: string, value: string) => {
+    const services = (content.services as typeof defaultServices) || defaultServices;
     const newServices = [...services];
     newServices[index] = {
       ...newServices[index],
-      icon: { name: config.icon },
-      title: config.title,
-      description: config.description,
-      features: config.features
+      [field]: value
     };
-    updateContent('services', newServices);
+    updateContent('services', JSON.stringify(newServices));
   };
 
-  const services = content.services || [
-    {
-      icon: { name: 'Palette' },
-      title: 'UX/UI Design',
-      description: 'User-centered design that combines beautiful aesthetics with intuitive functionality.',
-      features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design'],
-      color: 'bg-blue-50 text-blue-600'
-    },
-    {
-      icon: { name: 'Code' },
-      title: 'Web Design & Development',
-      description: 'Modern, responsive websites built with the latest technologies and best practices.',
-      features: ['Responsive Design', 'Performance Optimization', 'SEO Integration', 'CMS Development'],
-      color: 'bg-green-50 text-green-600'
-    },
-    {
-      icon: { name: 'Layers' },
-      title: 'Design Systems',
-      description: 'Scalable design systems that maintain consistency across all your digital products.',
-      features: ['Component Libraries', 'Style Guides', 'Documentation', 'Token Management'],
-      color: 'bg-purple-50 text-purple-600'
-    },
-    {
-      icon: { name: 'Smartphone' },
-      title: 'Product Design',
-      description: 'End-to-end product design from concept to launch, focused on user needs and business goals.',
-      features: ['Product Strategy', 'User Testing', 'Conversion Optimization', 'Launch Support'],
-      color: 'bg-orange-50 text-orange-600'
-    }
-  ];
+  const services = (content.services as typeof defaultServices) || defaultServices;
 
   return (
     <SectionWrapper sectionId="services">
@@ -89,40 +89,12 @@ const Services: React.FC = () => {
           <div className="border-l border-r border-border-primary">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px brutalist-hatch">
               {services.map((service, index) => (
-                <div key={index} className="bg-bg-primary p-8 border-t border-border-primary">
-                  {/* Isometric illustration placeholder */}
-                  <div className="w-full h-48 mb-6 bg-bg-secondary border border-border-primary rounded-section flex items-center justify-center">
-                    <div className="text-6xl opacity-20">{service.icon.name.charAt(0)}</div>
-                  </div>
-                  
-                  <EditableText
-                    elementId={`service-title-${index}`}
-                    onUpdate={(value) => updateService(index, { ...service, title: value })}
-                    className="text-xl font-bold text-text-primary mb-3"
-                    as="h3"
-                  >
-                    {service.title}
-                  </EditableText>
-                  
-                  <EditableText
-                    elementId={`service-description-${index}`}
-                    onUpdate={(value) => updateService(index, { ...service, description: value })}
-                    className="text-sm text-text-secondary mb-4"
-                    as="p"
-                    multiline
-                  >
-                    {service.description}
-                  </EditableText>
-                  
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-xs text-text-tertiary">
-                        <span className="font-mono mr-2">→</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ServiceCard
+                  key={index}
+                  service={service}
+                  index={index}
+                  onUpdate={handleServiceUpdate}
+                />
               ))}
             </div>
           </div>

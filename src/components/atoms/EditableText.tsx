@@ -69,7 +69,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     return (
       <div className="relative">
         <InputComponent
-          ref={inputRef as any}
+          ref={inputRef as React.RefObject<HTMLInputElement & HTMLTextAreaElement>}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}

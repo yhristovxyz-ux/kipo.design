@@ -1,7 +1,18 @@
 import React from 'react';
-import { ArrowRight, Check, X, AlertCircle, Info, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, MessageCircle, Users } from 'lucide-react';
 import Button from './atoms/Button';
-import { Stat, SectionHeader, IconBox, ContactInfo } from '../design-system';
+import { 
+  Stat, 
+  SectionHeader, 
+  IconBox, 
+  ContactInfo,
+  ServiceCard,
+  ProcessStep,
+  ProjectCard,
+  TestimonialCard,
+  ApproachCard,
+  Isocon
+} from '../design-system';
 
 const DesignSystemShowcase: React.FC = () => {
   return (
@@ -407,6 +418,139 @@ const DesignSystemShowcase: React.FC = () => {
         </section>
 
       </div>
+
+      {/* Isocons Section */}
+      <section className="brutalist-section bg-bg-primary">
+        <div className="brutalist-container">
+          <SectionHeader
+            label="ISOCONS"
+            title="Isometric Icons"
+            description="Colorful isometric icons for visual interest"
+          />
+
+          <div className="border-l border-r border-border-primary">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-px brutalist-hatch">
+              {['palette', 'code', 'layers', 'smartphone', 'messageCircle', 'lightbulb', 'rocket', 'users', 'target', 'grid', 'zap', 'briefcase'].map((icon) => (
+                <div key={icon} className="bg-bg-primary p-8 border-t border-border-primary flex flex-col items-center justify-center">
+                  <Isocon name={icon} size={96} />
+                  <p className="text-xs text-text-tertiary mt-4 font-mono">{icon}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Card Components Section */}
+      <section className="brutalist-section bg-bg-primary">
+        <div className="brutalist-container">
+          <SectionHeader
+            label="CARD COMPONENTS"
+            title="Section Cards"
+            description="Reusable card components with isometric icons"
+          />
+
+          {/* Service Card */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-text-primary mb-6">Service Card</h3>
+            <div className="border-l border-r border-border-primary">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px brutalist-hatch">
+                <ServiceCard
+                  service={{
+                    icon: { name: 'Palette' },
+                    title: 'UX/UI Design',
+                    description: 'User-centered design that combines beautiful aesthetics with intuitive functionality.',
+                    features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design']
+                  }}
+                  index={0}
+                  onUpdate={() => {}}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Process Step */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-text-primary mb-6">Process Step</h3>
+            <div className="border-l border-r border-border-primary">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-px brutalist-hatch">
+                <ProcessStep
+                  step={{
+                    number: '01',
+                    icon: MessageCircle,
+                    title: 'Discovery',
+                    description: 'Understanding your needs and goals',
+                    duration: '1-2 weeks',
+                    deliverables: ['Research Report', 'Strategy Document'],
+                    details: 'Deep dive into requirements'
+                  }}
+                  index={0}
+                  isActive={false}
+                  onClick={() => {}}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Project Card */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-text-primary mb-6">Project Card</h3>
+            <div className="border-l border-r border-border-primary">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px brutalist-hatch">
+                <ProjectCard
+                  project={{
+                    id: 1,
+                    title: 'FinanceFlow Dashboard',
+                    description: 'Financial management platform with real-time analytics',
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
+                    tags: ['UX/UI', 'Web App', 'Dashboard'],
+                    year: '2024',
+                    client: 'FinTech'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial Card */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-text-primary mb-6">Testimonial Card</h3>
+            <div className="border-l border-r border-border-primary">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px brutalist-hatch">
+                <TestimonialCard
+                  testimonial={{
+                    quote: 'Working with this team was an absolute pleasure. They delivered beyond our expectations.',
+                    author: 'John Doe',
+                    role: 'CEO',
+                    company: 'Tech Corp',
+                    avatar: 'https://i.pravatar.cc/150?img=1',
+                    rating: 5
+                  }}
+                  index={0}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Approach Card */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-text-primary mb-6">Approach Card</h3>
+            <div className="border-l border-r border-border-primary">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-px brutalist-hatch">
+                <ApproachCard
+                  principle={{
+                    icon: Users,
+                    title: 'User-Centered',
+                    description: 'We put users at the heart of everything we design',
+                    stat: '98% Satisfaction'
+                  }}
+                  index={0}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="util-hatch bg-[var(--color-bg-tertiary)] border-t border-[var(--color-border-primary)] py-8">

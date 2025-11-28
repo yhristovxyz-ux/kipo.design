@@ -24,7 +24,7 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
   className = ''
 }) => {
   const Icon = typeof icon === 'string' 
-    ? (LucideIcons[icon] as React.ComponentType<any>) 
+    ? (LucideIcons[icon] as React.ComponentType<{ size?: number; className?: string }>) 
     : icon;
   
   if (!Icon) return null;

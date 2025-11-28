@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Edit } from 'lucide-react';
+import { Edit } from 'lucide-react';
 import { useCMS } from '../../contexts/CMSContext';
 
 interface EditableImageProps {

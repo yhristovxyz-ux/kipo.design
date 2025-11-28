@@ -4,6 +4,13 @@ import { ServiceCardEditPopup } from '../cms/EditingPopups';
 import Icon from './Icon';
 import { Card, CardContent } from '@/design-system';
 
+interface ServiceConfig {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+}
+
 interface EditableServiceCardProps {
   service: {
     icon: { name: string };
@@ -13,7 +20,7 @@ interface EditableServiceCardProps {
     color?: string;
   };
   index: number;
-  onUpdate: (index: number, config: any) => void;
+  onUpdate: (index: number, config: ServiceConfig) => void;
 }
 
 const EditableServiceCard: React.FC<EditableServiceCardProps> = ({
@@ -34,7 +41,7 @@ const EditableServiceCard: React.FC<EditableServiceCardProps> = ({
     }
   };
 
-  const handleSave = (config: any) => {
+  const handleSave = (config: ServiceConfig) => {
     onUpdate(index, config);
     setShowEditPopup(false);
     setSelectedElement(null);

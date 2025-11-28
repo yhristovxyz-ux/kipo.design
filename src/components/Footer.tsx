@@ -1,15 +1,14 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github } from 'lucide-react';
+import { Twitter, Linkedin, Github } from 'lucide-react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
 import SectionWrapper from './cms/SectionWrapper';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { sections, updateSection } = useCMS();
-  const section = sections.find(s => s.id === 'footer');
+  const { updateSection } = useCMS();
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('footer', { [field]: value });
   };
 

@@ -3,17 +3,23 @@ import { useCMS } from '../../contexts/CMSContext';
 import { ButtonEditPopup } from '../cms/EditingPopups';
 import Button from './Button';
 
+interface ButtonConfig {
+  text: string;
+  href: string;
+  variant: 'primary' | 'secondary' | 'outline';
+}
+
 interface EditableButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   onClick?: () => void;
-  icon?: any;
+  icon?: React.ComponentType<{ className?: string }>;
   iconPosition?: 'left' | 'right';
   className?: string;
   editableId: string;
-  onUpdate: (config: any) => void;
+  onUpdate: (config: ButtonConfig) => void;
 }
 
 const EditableButton: React.FC<EditableButtonProps> = ({
@@ -43,7 +49,7 @@ const EditableButton: React.FC<EditableButtonProps> = ({
     }
   };
 
-  const handleSave = (config: any) => {
+  const handleSave = (config: ButtonConfig) => {
     onUpdate(config);
     setShowEditPopup(false);
     setSelectedElement(null);

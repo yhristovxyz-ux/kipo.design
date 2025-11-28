@@ -9,43 +9,44 @@ Complete guide to all project documentation.
 | Document | Purpose | Audience |
 |----------|---------|----------|
 | [README.md](README.md) | Project overview, quick start | Everyone |
+| [KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md) | Complete design system guide (v1.1) | Designers, Developers |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture, technical decisions | Developers, AI |
-| [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Design tokens, components, patterns | Designers, Developers |
 | [docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md) | Coding standards, best practices | Developers |
-
-### Design System Documentation
-
-| Document | Purpose | Status |
-|----------|---------|--------|
-| [KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md) | Complete design system guide (v1.1) | ✅ Current |
-| [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Original design system docs | ⚠️ Reference |
-| [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) | Old design system docs | ⚠️ Superseded |
 
 ### Development Workflow
 
-| Document | Purpose | Status |
-|----------|---------|--------|
-| [docs/WORKFLOW.md](docs/WORKFLOW.md) | Git workflow, branching strategy | ✅ Current |
-| [docs/GIT-GUIDE.md](docs/GIT-GUIDE.md) | Quick Git reference | ✅ Current |
-| [docs/SETUP-SUMMARY.md](docs/SETUP-SUMMARY.md) | Environment setup | ✅ Current |
+| Document | Purpose |
+|----------|---------|
+| [docs/WORKFLOW.md](docs/WORKFLOW.md) | Git workflow, branching strategy |
+| [docs/GIT-GUIDE.md](docs/GIT-GUIDE.md) | Quick Git reference |
 
 ### AI Development
 
-| Document | Purpose | Status |
-|----------|---------|--------|
-| [docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md) | AI development patterns | ✅ Current |
-| [docs/AI-DEVELOPMENT-PLAN.md](docs/AI-DEVELOPMENT-PLAN.md) | AI development strategy | ✅ Current |
-| [AI-DEVELOPMENT-COMPLETE.md](AI-DEVELOPMENT-COMPLETE.md) | Completed milestones | ✅ Current |
+| Document | Purpose |
+|----------|---------|
+| [docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md) | AI development patterns |
+| [docs/AI-DEVELOPMENT-PLAN.md](docs/AI-DEVELOPMENT-PLAN.md) | AI development strategy |
 
-### Project Status & History
+### Version History
 
-| Document | Purpose | Status |
-|----------|---------|--------|
-| [SETUP-COMPLETE.md](SETUP-COMPLETE.md) | Setup completion checklist | ✅ Current |
-| [CODEBASE-STRUCTURE.md](CODEBASE-STRUCTURE.md) | Old codebase structure | ⚠️ Superseded by ARCHITECTURE.md |
-| [IMPLEMENTATION-PLAN.md](IMPLEMENTATION-PLAN.md) | Old implementation plan | ⚠️ Historical |
-| [REFACTORING-STATUS.md](REFACTORING-STATUS.md) | Old refactoring status | ⚠️ Historical |
-| [FIXES_SUMMARY.md](FIXES_SUMMARY.md) | Old fixes summary | ⚠️ Historical |
+| Document | Purpose |
+|----------|---------|
+| [CHANGELOG-v1.1.md](CHANGELOG-v1.1.md) | Design system v1.1 changes |
+
+### Archived Documentation
+
+Historical documents moved to [documentation-archive/](documentation-archive/) for reference:
+- AI-DEVELOPMENT-COMPLETE.md
+- CODEBASE-STRUCTURE.md
+- COMPONENT-AUDIT-SUMMARY.md
+- COMPLIANCE-REPORT.md
+- DESIGN-SYSTEM.md (old)
+- DESIGN_SYSTEM.md (old)
+- FIXES_SUMMARY.md
+- IMPLEMENTATION-PLAN.md
+- REFACTORING-STATUS.md
+- SETUP-COMPLETE.md
+- SETUP-SUMMARY.md
 
 ## 🎯 Quick Navigation
 
@@ -55,31 +56,23 @@ Complete guide to all project documentation.
 2. Read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 3. Review [docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)
 4. Check [docs/WORKFLOW.md](docs/WORKFLOW.md)
-5. Explore [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)
+5. Explore [KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)
 
 ### For AI Agents
 
 1. **[README.md](README.md)** - Project overview
 2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System understanding
-3. **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Design tokens
+3. **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Design system
 4. **[docs/DEVELOPMENT-STANDARDS.md](docs/DEVELOPMENT-STANDARDS.md)** - Coding practices
 5. **[docs/AI-GUIDELINES.md](docs/AI-GUIDELINES.md)** - AI-specific patterns
 
 ### For Designers
 
 1. **[KIPO-DESIGN-SYSTEM.md](KIPO-DESIGN-SYSTEM.md)** - Complete design system guide
-2. **[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md)** - Original design docs (reference)
 
 ## 📋 Documentation Maintenance
 
-### Current (✅)
-Files that are actively maintained and reflect current state.
-
-### Superseded (⚠️)
-Files that have been replaced by newer documentation but kept for reference.
-
-### Historical (📜)
-Files from previous iterations, kept for historical context.
+All current documentation is actively maintained. Historical documents have been moved to `documentation-archive/` for reference.
 
 ## 🔄 Update Guidelines
 
@@ -106,27 +99,28 @@ kipo.design/
 ├── README.md                              # Main entry point
 ├── DOCUMENTATION-INDEX.md                 # This file
 ├── KIPO-DESIGN-SYSTEM.md                 # Complete design system
+├── CHANGELOG-v1.1.md                     # Version history
 │
 ├── docs/                                  # Core documentation
 │   ├── ARCHITECTURE.md                   # System architecture
-│   ├── DESIGN-SYSTEM.md                  # Complete design guide
 │   ├── DEVELOPMENT-STANDARDS.md          # Coding standards
 │   ├── WORKFLOW.md                       # Git workflow
 │   ├── GIT-GUIDE.md                      # Git reference
-│   ├── SETUP-SUMMARY.md                  # Setup guide
 │   ├── AI-GUIDELINES.md                  # AI patterns
 │   └── AI-DEVELOPMENT-PLAN.md            # AI strategy
 │
-├── Project Status
-│   ├── AI-DEVELOPMENT-COMPLETE.md        # Milestones
-│   └── SETUP-COMPLETE.md                 # Setup checklist
-│
-└── Historical (Reference Only)
-    ├── CODEBASE-STRUCTURE.md             # Old structure
-    ├── IMPLEMENTATION-PLAN.md            # Old plan
-    ├── REFACTORING-STATUS.md             # Old status
-    ├── FIXES_SUMMARY.md                  # Old fixes
-    └── DESIGN_SYSTEM.md                  # Old design docs
+└── documentation-archive/                 # Historical documents
+    ├── AI-DEVELOPMENT-COMPLETE.md
+    ├── CODEBASE-STRUCTURE.md
+    ├── COMPONENT-AUDIT-SUMMARY.md
+    ├── COMPLIANCE-REPORT.md
+    ├── DESIGN-SYSTEM.md
+    ├── DESIGN_SYSTEM.md
+    ├── FIXES_SUMMARY.md
+    ├── IMPLEMENTATION-PLAN.md
+    ├── REFACTORING-STATUS.md
+    ├── SETUP-COMPLETE.md
+    └── SETUP-SUMMARY.md
 ```
 
 ## 🔗 Related Resources

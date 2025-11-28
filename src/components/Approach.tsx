@@ -2,19 +2,13 @@ import React from 'react';
 import { Users, Target, Grid, Zap } from 'lucide-react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
-import Icon from './atoms/Icon';
 import SectionWrapper from './cms/SectionWrapper';
-import { Card, CardContent } from '@/design-system';
+import { ApproachCard } from '@/design-system';
 
 const Approach: React.FC = () => {
-  const { sections, updateSection } = useCMS();
-  const section = sections.find(s => s.id === 'approach');
-  
-  if (!section) return null;
+  const { updateSection } = useCMS();
 
-  const { content } = section;
-
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('approach', { [field]: value });
   };
 
@@ -73,64 +67,17 @@ const Approach: React.FC = () => {
           </EditableText>
         </div>
 
-        <div className="brutalist-grid-divided grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {principles.map((principle, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden border-0 rounded-none"
-            >
-              <CardContent className="p-8">
-                <div className="w-12 h-12 bg-bg-primary border border-border-primary rounded-brutalist flex items-center justify-center mb-6 group-hover:bg-primary group-hover:border-primary transition-colors">
-                  <Icon
-                    name={principle.icon.name || 'Users'}
-                    size={24}
-                    className="text-text-primary group-hover:text-white transition-colors"
-                    editableId={`approach-icon-${index}`}
-                  />
-                </div>
-                
-                <EditableText
-                  elementId={`approach-title-${index}`}
-                  onUpdate={(value) => {
-                    const newPrinciples = [...principles];
-                    newPrinciples[index] = { ...newPrinciples[index], title: value };
-                    updateContent('principles', newPrinciples);
-                  }}
-                  className="text-xl font-bold text-text-primary mb-4"
-                  as="h3"
-                >
-                  {principle.title}
-                </EditableText>
-                
-                <EditableText
-                  elementId={`approach-description-${index}`}
-                  onUpdate={(value) => {
-                    const newPrinciples = [...principles];
-                    newPrinciples[index] = { ...newPrinciples[index], description: value };
-                    updateContent('principles', newPrinciples);
-                  }}
-                  className="text-text-secondary mb-6 leading-relaxed"
-                  as="p"
-                  multiline
-                >
-                  {principle.description}
-                </EditableText>
-                
-                <EditableText
-                  elementId={`approach-stat-${index}`}
-                  onUpdate={(value) => {
-                    const newPrinciples = [...principles];
-                    newPrinciples[index] = { ...newPrinciples[index], stat: value };
-                    updateContent('principles', newPrinciples);
-                  }}
-                  className="text-sm font-bold text-text-primary bg-bg-secondary px-4 py-2 rounded-brutalist inline-block border border-border-primary uppercase tracking-wide"
-                  as="div"
-                >
-                  {principle.stat}
-                </EditableText>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Full-width contained grid */}
+        <div className="border-l border-r border-border-primary">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px brutalist-hatch">
+            {principles.map((principle, index) => (
+              <ApproachCard
+                key={index}
+                principle={principle}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

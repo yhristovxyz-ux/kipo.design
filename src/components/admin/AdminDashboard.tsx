@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { 
   BarChart3, 
   Users, 
@@ -19,7 +18,6 @@ interface AdminDashboardProps {
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onGoToLiveEditor }) => {
   const [activeTab, setActiveTab] = useState('overview');
-  const navigate = useNavigate();
   
   const stats = [
     { label: 'Total Projects', value: '12', icon: FolderOpen, color: 'bg-blue-500' },
@@ -32,14 +30,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout, onGoToLiveEdi
     { id: 1, name: 'FinanceFlow Dashboard', status: 'Published', lastModified: '2024-01-15' },
     { id: 2, name: 'EcoShop E-commerce', status: 'Draft', lastModified: '2024-01-12' },
     { id: 3, name: 'MedConnect Platform', status: 'Published', lastModified: '2024-01-10' },
-  ];
-
-  const sections = [
-    { id: 'hero', name: 'Hero Section', status: 'Active' },
-    { id: 'services', name: 'Services', status: 'Active' },
-    { id: 'about', name: 'About', status: 'Active' },
-    { id: 'testimonials', name: 'Testimonials', status: 'Active' },
-    { id: 'contact', name: 'Contact', status: 'Active' }
   ];
 
   const menuItems = [

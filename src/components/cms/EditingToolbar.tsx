@@ -1,10 +1,10 @@
 import React from 'react';
-import { Edit3, Eye, Save, Settings, Plus, Copy, Trash2, Move, LogOut, X } from 'lucide-react';
+import { Edit3, Eye, Save, Settings, LogOut } from 'lucide-react';
 import { useCMS } from '../../contexts/CMSContext';
 import { useNavigate } from 'react-router-dom';
 
 const EditingToolbar: React.FC = () => {
-  const { isEditMode, setEditMode, sections, selectedElement, showSectionManager, setShowSectionManager } = useCMS();
+  const { isEditMode, setEditMode, selectedElement, showSectionManager, setShowSectionManager } = useCMS();
   const navigate = useNavigate();
 
   if (!isEditMode) {

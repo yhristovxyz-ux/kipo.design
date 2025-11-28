@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface MediaItem {
@@ -23,7 +24,7 @@ export interface SectionConfig {
   name: string;
   enabled: boolean;
   order: number;
-  content: Record<string, any>;
+  content: Record<string, unknown>;
 }
 
 interface CMSContextType {
@@ -32,7 +33,7 @@ interface CMSContextType {
   showSectionManager: boolean;
   setShowSectionManager: (show: boolean) => void;
   sections: SectionConfig[];
-  updateSection: (sectionId: string, content: Record<string, any>) => void;
+  updateSection: (sectionId: string, content: Record<string, unknown>) => void;
   reorderSections: (sections: SectionConfig[]) => void;
   duplicateSection: (sectionId: string) => void;
   toggleSection: (sectionId: string) => void;
@@ -208,7 +209,7 @@ export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [sections, setSections] = useState<SectionConfig[]>(defaultSections);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
 
-  const updateSection = (sectionId: string, content: Record<string, any>) => {
+  const updateSection = (sectionId: string, content: Record<string, unknown>) => {
     setSections(prev => prev.map(section => 
       section.id === sectionId 
         ? { ...section, content: { ...section.content, ...content } }

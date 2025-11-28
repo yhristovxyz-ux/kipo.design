@@ -21,7 +21,6 @@ interface ButtonProps {
   iconPosition?: 'left' | 'right';
   className?: string;
   editableId?: string;
-  onEdit?: (newText: string) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -33,8 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   iconPosition = 'right',
   className = '',
-  editableId,
-  onEdit
+  editableId
 }) => {
   const { isEditMode, selectedElement, setSelectedElement } = useCMS();
   
@@ -47,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
       e.preventDefault();
       setSelectedElement(editableId);
     } else if (onClick) {
-      onClick(e as any);
+      onClick(e as React.MouseEvent<HTMLButtonElement>);
     }
   };
 

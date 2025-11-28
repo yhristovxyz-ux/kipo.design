@@ -14,10 +14,9 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const { sections, updateSection } = useCMS();
-  const section = sections.find(s => s.id === 'contact');
+  const { updateSection } = useCMS();
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('contact', { [field]: value });
   };
 
@@ -43,9 +42,9 @@ const Contact: React.FC = () => {
 
   return (
     <SectionWrapper sectionId="contact">
-      <section id="contact" className="brutalist-section bg-bg-primary ">
+      <section id="contact" className="brutalist-section bg-bg-primary">
         <div className="brutalist-container">
-          <div className="mb-16">
+          <div className="mb-12 text-center">
             <EditableText
               elementId="contact-headline"
               onUpdate={(value) => updateContent('headline', value)}
@@ -57,7 +56,7 @@ const Contact: React.FC = () => {
             <EditableText
               elementId="contact-description"
               onUpdate={(value) => updateContent('description', value)}
-              className="text-lg text-text-secondary max-w-2xl"
+              className="text-lg text-text-secondary max-w-2xl mx-auto"
               as="p"
               multiline
             >
@@ -66,8 +65,6 @@ const Contact: React.FC = () => {
             </EditableText>
           </div>
 
-        {/* Contained with borders */}
-        <div className="border-l border-r border-border-primary px-8 py-8">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Contact Form */}
             <div className="lg:col-span-2">
@@ -201,12 +198,12 @@ const Contact: React.FC = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-bg-tertiary border-border-primary">
+              <Card className="bg-text-primary border-text-primary diagonal-stripes overflow-hidden">
                 <CardContent className="p-8">
                   <EditableText
                     elementId="contact-cta-title"
                     onUpdate={(value) => updateContent('ctaTitle', value)}
-                    className="text-xl font-bold mb-4 text-white"
+                    className="text-xl font-bold mb-4 text-bg-primary"
                     as="h3"
                   >
                     Free Consultation
@@ -214,7 +211,7 @@ const Contact: React.FC = () => {
                   <EditableText
                     elementId="contact-cta-description"
                     onUpdate={(value) => updateContent('ctaDescription', value)}
-                    className="text-text-secondary mb-6 text-sm"
+                    className="text-zinc-300 mb-6 text-sm"
                     as="p"
                     multiline
                   >
@@ -223,7 +220,7 @@ const Contact: React.FC = () => {
                   <Button 
                     variant="secondary" 
                     size="lg"
-                    className="w-full bg-bg-primary text-text-primary hover:bg-bg-secondary border-white"
+                    className="w-full bg-bg-primary text-text-primary hover:bg-bg-secondary border-bg-primary"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
                     Book a Call
@@ -232,7 +229,6 @@ const Contact: React.FC = () => {
               </Card>
             </div>
           </div>
-        </div>
         </div>
       </section>
     </SectionWrapper>

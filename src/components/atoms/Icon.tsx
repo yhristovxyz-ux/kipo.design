@@ -8,7 +8,6 @@ interface IconProps {
   color?: string;
   className?: string;
   editableId?: string;
-  onEdit?: (newIcon: string) => void;
 }
 
 const Icon: React.FC<IconProps> = ({
@@ -16,13 +15,12 @@ const Icon: React.FC<IconProps> = ({
   size = 24,
   color,
   className = '',
-  editableId,
-  onEdit
+  editableId
 }) => {
   const { isEditMode, selectedElement, setSelectedElement } = useCMS();
   
   // Get the icon component from Lucide
-  const IconComponent = (LucideIcons as any)[name] || LucideIcons.HelpCircle;
+  const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ size?: number; color?: string; className?: string }>>)[name] || LucideIcons.HelpCircle;
   
   const isSelected = isEditMode && selectedElement === editableId;
   const editClasses = isEditMode && editableId ? 'cursor-pointer hover:ring-2 hover:ring-blue-200 rounded relative' : '';

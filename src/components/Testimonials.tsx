@@ -1,16 +1,13 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
 import { useCMS } from '../contexts/CMSContext';
 import EditableText from './atoms/EditableText';
-import EditableImage from './atoms/EditableImage';
 import SectionWrapper from './cms/SectionWrapper';
-import { Card, CardContent, Avatar } from '@/design-system';
+import { TestimonialCard } from '@/design-system';
 
 const Testimonials: React.FC = () => {
-  const { sections, updateSection } = useCMS();
-  const section = sections.find(s => s.id === 'testimonials');
+  const { updateSection } = useCMS();
 
-  const updateContent = (field: string, value: any) => {
+  const updateContent = (field: string, value: string) => {
     updateSection('testimonials', { [field]: value });
   };
 
@@ -63,72 +60,17 @@ const Testimonials: React.FC = () => {
             </EditableText>
           </div>
 
-          {/* Testimonials */}
-          <div className="brutalist-grid">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="relative"
-              >
-                <CardContent className="p-8">
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-brutalist flex items-center justify-center border border-border-primary">
-                    <Quote className="w-4 h-4 text-white" />
-                  </div>
-                  
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  
-                  <EditableText
-                    elementId={`testimonial-quote-${index}`}
-                    onUpdate={(value) => console.log('Update quote:', value)}
-                    className="text-text-secondary text-lg mb-6 leading-relaxed"
-                    as="blockquote"
-                    multiline
-                  >
-                    "{testimonial.quote}"
-                  </EditableText>
-                  
-                  <div className="flex items-center">
-                    <Avatar
-                      src={testimonial.avatar}
-                      alt={testimonial.author}
-                      size="md"
-                      className="mr-4"
-                    />
-                    <div>
-                      <EditableText
-                        elementId={`testimonial-author-${index}`}
-                        onUpdate={(value) => console.log('Update author:', value)}
-                        className="font-bold text-text-primary"
-                        as="div"
-                      >
-                        {testimonial.author}
-                      </EditableText>
-                      <div className="text-text-secondary text-sm">
-                        <EditableText
-                          elementId={`testimonial-role-${index}`}
-                          onUpdate={(value) => console.log('Update role:', value)}
-                          as="span"
-                        >
-                          {testimonial.role}
-                        </EditableText>
-                        , 
-                        <EditableText
-                          elementId={`testimonial-company-${index}`}
-                          onUpdate={(value) => console.log('Update company:', value)}
-                          as="span"
-                        >
-                          {testimonial.company}
-                        </EditableText>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Testimonials - Full-width contained grid */}
+          <div className="border-l border-r border-border-primary">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px brutalist-hatch">
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard
+                  key={index}
+                  testimonial={testimonial}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Client Logos */}
