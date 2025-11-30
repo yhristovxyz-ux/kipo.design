@@ -1,43 +1,16 @@
 /**
- * @fileoverview API service for backend communication
+ * @fileoverview API service for Supabase backend communication
  * @module services/api
  */
 
+import { supabase } from '../lib/supabase';
 import { SectionConfig } from '../types/cms.types';
 import { Project, CreateProjectDto } from '../types/project.types';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
     this.name = 'ApiError';
-  }
-}
-
-async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  const url = `${API_BASE_URL}${endpoint}`;
-  
-  try {
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...options?.headers,
-      },
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: 'Request failed' }));
-      throw new ApiError(response.status, error.error || `HTTP ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    if (error instanceof ApiError) {
-      throw error;
-    }
-    throw new Error(`Network error: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
 
@@ -53,90 +26,181 @@ export class ApiService {
     return ApiService.instance;
   }
 
-  // Sections
   async getSections(): Promise<SectionConfig[]> {
-    return fetchAPI<SectionConfig[]>('/sections');
+    const { data, error } = await supabase
+      .from('sections')
+      .select('*')
+      .order('order', { ascending: true });
+
+    if (error) {
+      throw new ApiError(500, `Failed to fetch sections: ${error.message}`);
+    }
+
+    return data || [];
   }
 
   async saveSections(sections: SectionConfig[]): Promise<void> {
-    await fetchAPI('/sections', {
-      method: 'POST',
-      body: JSON.stringify(sections),
-    });
-  }
+    const { error: deleteError } = await supabase
+      .from('sections')
+      .delete()
+      .neq('id', '');
 
-  async updateSection(id: string, updates: Partial<SectionConfig>): Promise<SectionConfig> {
-    const response = await fetchAPI<{ section: SectionConfig }>(`/sections/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(updates),
-    });
-    return response.section;
-  }
+    if (deleteError) {
+      throw new ApiError(500, `Failed to clear sections: ${deleteError.message}`);
+    }
 
-  // Projects
-  async getProjects(): Promise<Project[]> {
-    return fetchAPI<Project[]>('/projects');
-  }
+    if (sections.length === 0) return;
 
-  async createProject(data: CreateProjectDto): Promise<Project> {
-    const response = await fetchAPI<{ project: Project }>('/projects', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    return response.project;
-  }
+    const { error: insertError } = await supabase
+      .from('sections')
+      .insert(sections.map(s => ({
+        id: s.id,
+        name: s.name,
+        enabled: s.enabled,
+        order: s.order,
+        content: s.content
+      })));
 
-  async updateProject(id: string, updates: Partial<Project>): Promise<Project> {
-    const response = await fetchAPI<{ project: Project }>(`/projects/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(updates),
-    });
-    return response.project;
-  }
-
-  async deleteProject(id: string): Promise<void> {
-    await fetchAPI(`/projects/${id}`, {
-      method: 'DELETE',
-    });
-  }
-
-  // Image upload
-  async uploadImage(file: File): Promise<string> {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const url = `${API_BASE_URL}/upload`;
-    
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-        // Don't set Content-Type header - browser will set it with boundary
-      });
-
-      if (!response.ok) {
-        const error = await response.json().catch(() => ({ error: 'Upload failed' }));
-        throw new ApiError(response.status, error.error || `HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
-      
-      // Return full URL
-      const baseUrl = API_BASE_URL.replace('/api', '');
-      return `${baseUrl}${data.url}`;
-    } catch (error) {
-      if (error instanceof ApiError) {
-        throw error;
-      }
-      throw new Error(`Upload error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (insertError) {
+      throw new ApiError(500, `Failed to save sections: ${insertError.message}`);
     }
   }
 
-  // Health check
+  async updateSection(id: string, updates: Partial<SectionConfig>): Promise<SectionConfig> {
+    const { data, error } = await supabase
+      .from('sections')
+      .update({
+        name: updates.name,
+        enabled: updates.enabled,
+        order: updates.order,
+        content: updates.content
+      })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw new ApiError(500, `Failed to update section: ${error.message}`);
+    }
+
+    return data;
+  }
+
+  async getProjects(): Promise<Project[]> {
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      throw new ApiError(500, `Failed to fetch projects: ${error.message}`);
+    }
+
+    return (data || []).map(p => ({
+      ...p,
+      icon: p.icon as any,
+      content: p.content as any
+    }));
+  }
+
+  async createProject(data: CreateProjectDto): Promise<Project> {
+    const id = `project_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+    const { data: project, error } = await supabase
+      .from('projects')
+      .insert({
+        id,
+        title: data.title,
+        description: data.description,
+        slug: data.slug,
+        image: data.image,
+        icon: data.icon as any,
+        tags: data.tags,
+        year: data.year,
+        client: data.client,
+        content: data.content as any
+      })
+      .select()
+      .single();
+
+    if (error) {
+      throw new ApiError(500, `Failed to create project: ${error.message}`);
+    }
+
+    return {
+      ...project,
+      icon: project.icon as any,
+      content: project.content as any
+    };
+  }
+
+  async updateProject(id: string, updates: Partial<Project>): Promise<Project> {
+    const { data: project, error } = await supabase
+      .from('projects')
+      .update({
+        title: updates.title,
+        description: updates.description,
+        slug: updates.slug,
+        image: updates.image,
+        icon: updates.icon as any,
+        tags: updates.tags,
+        year: updates.year,
+        client: updates.client,
+        content: updates.content as any
+      })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw new ApiError(500, `Failed to update project: ${error.message}`);
+    }
+
+    return {
+      ...project,
+      icon: project.icon as any,
+      content: project.content as any
+    };
+  }
+
+  async deleteProject(id: string): Promise<void> {
+    const { error } = await supabase
+      .from('projects')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      throw new ApiError(500, `Failed to delete project: ${error.message}`);
+    }
+  }
+
+  async uploadImage(file: File): Promise<string> {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+    const filePath = fileName;
+
+    const { error: uploadError } = await supabase.storage
+      .from('project-images')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
+
+    if (uploadError) {
+      throw new ApiError(500, `Failed to upload image: ${uploadError.message}`);
+    }
+
+    const { data } = supabase.storage
+      .from('project-images')
+      .getPublicUrl(filePath);
+
+    return data.publicUrl;
+  }
+
   async healthCheck(): Promise<boolean> {
     try {
-      await fetchAPI('/health');
-      return true;
+      const { error } = await supabase.from('sections').select('id').limit(1);
+      return !error;
     } catch {
       return false;
     }
